@@ -7,6 +7,7 @@ import * as actions from './actions'
 import InputDisplay from './InputDisplay'
 
 const enhance = compose(
+  // TODO: we do not need the third argument normally, so this is kind of stupid...
   connectState(reducer, actions, ({ name }) => name),
   withHandlers({
     onFocus: props => event => {
