@@ -1,8 +1,8 @@
 import { compose, withReducer, mapProps, withPropsOnChange } from 'recompose'
 import getDisplayName from './getDisplayName'
 
-const bindActionCreator = (dispatch, identity) => actionCreator => {
-  const fn = (...args) => dispatch(actionCreator(identity, ...args))
+const bindActionCreator = dispatch => actionCreator => {
+  const fn = (...args) => dispatch(actionCreator(...args))
   fn.displayName =
     actionCreator.displayName ||
     actionCreator.name ||
@@ -10,8 +10,8 @@ const bindActionCreator = (dispatch, identity) => actionCreator => {
   return fn
 }
 
-const bindActionCreators = (actions = {}, dispatch, identity) => {
-  const bind = bindActionCreator(dispatch, identity)
+const bindActionCreators = (actions = {}, dispatch) => {
+  const bind = bindActionCreator(dispatch)
   const actionCreatorKeys = Object.keys(actions).filter(
     actionCreatorKey => typeof actions[actionCreatorKey] === 'function'
   )
@@ -33,23 +33,13 @@ const omitState = mapProps(props => {
   return newProps
 })
 
-const defaultIdentifier = ({ id }) => id
-
-const connectState = (
-  reducer,
-  actionCreators,
-  identitifier = defaultIdentifier
-) => {
+const connectState = (reducer, actionCreators) => {
   const enhance = Component =>
     compose(
       withReducer(STATE_NAME, DISPATCH_NAME, reducer),
       withPropsOnChange([STATE_NAME, DISPATCH_NAME], props => ({
         ...props[STATE_NAME],
-        ...bindActionCreators(
-          actionCreators,
-          props[DISPATCH_NAME],
-          `${getDisplayName(Component, 'Component')}/${identitifier(props)}`
-        )
+        ...bindActionCreators(actionCreators, props[DISPATCH_NAME])
       })),
       omitState
     )(Component)

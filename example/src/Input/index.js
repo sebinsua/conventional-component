@@ -6,9 +6,11 @@ import * as actions from './actions'
 
 import InputDisplay from './InputDisplay'
 
+// const defaultIdentifier = ({ id }) => id
+// `${getDisplayName(Component, 'Component')}/${identitifier(props)}`
+
 const enhance = compose(
-  // TODO: we do not need the third argument normally, so this is kind of stupid...
-  connectState(reducer, actions, ({ name }) => name),
+  connectState(reducer, actions),
   withHandlers({
     onFocus: props => event => {
       event.preventDefault()
