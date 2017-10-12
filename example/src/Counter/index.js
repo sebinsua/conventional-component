@@ -1,16 +1,15 @@
 import { compose, withHandlers } from 'recompose'
 import connectState from '../connectState'
 import reducer from './reducer'
-import { increment } from './actions'
+import * as actions from './actions'
 
 import CounterDisplay from './CounterDisplay'
 
 const enhance = compose(
-  connectState(reducer, { increment }),
+  connectState(reducer, actions),
   withHandlers({
     increment: props => event => {
       event.preventDefault()
-      console.log('props', props, 'event', event)
       props.increment()
     }
   })

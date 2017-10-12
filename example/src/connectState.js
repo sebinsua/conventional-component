@@ -1,7 +1,8 @@
 import { compose, withReducer, mapProps, withPropsOnChange } from 'recompose'
+import getDisplayName from './getDisplayName'
 
-const bindActionCreator = dispatch => actionCreator => {
-  const fn = (...args) => dispatch(actionCreator(...args))
+const bindActionCreator = (dispatch, identity) => actionCreator => {
+  const fn = (...args) => dispatch(actionCreator(identity, ...args))
   fn.displayName =
     actionCreator.displayName ||
     actionCreator.name ||
@@ -9,9 +10,11 @@ const bindActionCreator = dispatch => actionCreator => {
   return fn
 }
 
-const bindActionCreators = (actions = {}, dispatch) => {
-  const bind = bindActionCreator(dispatch)
-  const actionCreatorKeys = Object.keys(actions)
+const bindActionCreators = (actions = {}, dispatch, identity) => {
+  const bind = bindActionCreator(dispatch, identity)
+  const actionCreatorKeys = Object.keys(actions).filter(
+    actionCreatorKey => typeof actions[actionCreatorKey] === 'function'
+  )
   return actionCreatorKeys.reduce((boundActionCreators, actionCreatorKey) => {
     const boundActionCreator = bind(actions[actionCreatorKey])
     return {
@@ -30,14 +33,28 @@ const omitState = mapProps(props => {
   return newProps
 })
 
-const connectState = (reducer, actionCreators) =>
-  compose(
-    withReducer(STATE_NAME, DISPATCH_NAME, reducer),
-    withPropsOnChange([STATE_NAME, DISPATCH_NAME], props => ({
-      ...props[STATE_NAME],
-      ...bindActionCreators(actionCreators, props[DISPATCH_NAME])
-    })),
-    omitState
-  )
+const defaultIdentifier = ({ id }) => id
+
+const connectState = (
+  reducer,
+  actionCreators,
+  identitifier = defaultIdentifier
+) => {
+  const enhance = Component =>
+    compose(
+      withReducer(STATE_NAME, DISPATCH_NAME, reducer),
+      withPropsOnChange([STATE_NAME, DISPATCH_NAME], props => ({
+        ...props[STATE_NAME],
+        ...bindActionCreators(
+          actionCreators,
+          props[DISPATCH_NAME],
+          `${getDisplayName(Component, 'Component')}/${identitifier(props)}`
+        )
+      })),
+      omitState
+    )(Component)
+
+  return enhance
+}
 
 export default connectState
