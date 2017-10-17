@@ -6,19 +6,23 @@ import * as actions from './actions'
 
 import InputDisplay from './InputDisplay'
 
-// const defaultIdentifier = ({ id }) => id
-// `${getDisplayName(Component, 'Component')}/${identitifier(props)}`
-
 const enhance = compose(
   connectState(reducer, actions),
   withHandlers({
+    onBlur: props => event => {
+      event.preventDefault()
+      props.setFocus(false)
+    },
+    onChange: props => event => {
+      event.preventDefault()
+      props.setValue(event.target.value)
+    },
     onFocus: props => event => {
       event.preventDefault()
       props.setFocus(true)
     },
-    onBlur: props => event => {
-      event.preventDefault()
-      props.setFocus(false)
+    reset: props => () => {
+      props.setValue('')
     }
   })
 )

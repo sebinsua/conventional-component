@@ -2,11 +2,10 @@ import { compose, withReducer, mapProps, withPropsOnChange } from 'recompose'
 import getDisplayName from './getDisplayName'
 
 const bindActionCreator = dispatch => actionCreator => {
-  const fn = (...args) => dispatch(actionCreator(...args))
-  fn.displayName =
-    actionCreator.displayName ||
-    actionCreator.name ||
-    'AnonymousBoundActionCreator'
+  const fn = (...args) => dispatch(actionCreator(undefined, ...args))
+
+  fn.displayName = getDisplayName(actionCreator, 'AnonymousBoundActionCreator')
+
   return fn
 }
 

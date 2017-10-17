@@ -2,11 +2,17 @@ import getDisplayName from './getDisplayName'
 
 function withActionIdentity(actionCreator) {
   function withIdentity(identity, ...args) {
-    return { identity, ...actionCreator(...args) }
+    if (identity) {
+      return { identity, ...actionCreator(...args) }
+    }
+
+    return actionCreator(...args)
   }
 
-  const actionCreatorName = getDisplayName(actionCreator, 'actionCreator')
-  withIdentity.displayName = `withIdentity(${actionCreatorName})`
+  if (process.env.NODE_ENV !== 'production') {
+    const actionCreatorName = getDisplayName(actionCreator, 'actionCreator')
+    withIdentity.displayName = `withIdentity(${actionCreatorName})`
+  }
 
   return withIdentity
 }
