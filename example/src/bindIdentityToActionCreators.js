@@ -1,6 +1,5 @@
 import getDisplayName from './getDisplayName'
-
-const defaultIdentifier = ({ id }) => id
+import defaultIdentifier from './defaultIdentifier'
 
 const bindIdentityToActionCreator = identity => actionCreator => {
   const fn = (...args) => actionCreator(identity, ...args)
@@ -16,7 +15,7 @@ const bindIdentityToActionCreators = (
   identifier = defaultIdentifier,
 ) => {
   const bind = bindIdentityToActionCreator(
-    `${getDisplayName(Component, 'Component')}/${identitifier(props)}`
+    identifier(props)
   )
 
   const actionCreatorKeys = Object.keys(actions).filter(

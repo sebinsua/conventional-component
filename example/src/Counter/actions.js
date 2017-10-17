@@ -1,5 +1,7 @@
 import withActionIdentity from '../withActionIdentity'
 
-export const INCREMENT = 'counter/INCREMENT'
+const prefix = 'Counter'
+
+export const INCREMENT = `${prefix}/INCREMENT`
 
 export const increment = withActionIdentity(() => ({ type: INCREMENT }))

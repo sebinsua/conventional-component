@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import receiveChildrenAsFunction from '../receiveChildrenAsFunction'
-import connectState from '../connectState'
+import connectToState from '../connectToState'
 
 import reducer from './reducer'
 import * as actions from './actions'
 import InputDisplay from './InputDisplay'
 
-const enhance = connectState(reducer, actions)
+const enhance = connectToState(reducer, actions)
 
-function create(DefaultTemplate) {
+function createLogic(Template = InputDisplay) {
   class Input extends Component {
     onBlur = event => {
       event.preventDefault()
@@ -32,27 +32,36 @@ function create(DefaultTemplate) {
 
     render() {
       const templateProps = {
+        ...this.props,
         onBlur: this.onBlur,
         onChange: this.onChange,
         onFocus: this.onFocus,
-        reset: this.reset,
-        ...this.props
+        reset: this.reset
       }
 
-      if (DefaultTemplate) {
-        return <DefaultTemplate {...templateProps} />
+      if (typeof this.props.children === 'function') {
+        return receiveChildrenAsFunction(templateProps)
       }
 
-      return receiveChildrenAsFunction(templateProps)
+      if (Template) {
+        return <Template {...templateProps} />
+      }
+
+      return null
     }
   }
 
   return Input
 }
 
-const InputLogic = enhance(create())
+const InputLogic = createLogic(InputDisplay);
 
-const Input = enhance(create(InputDisplay))
+const Input = enhance(InputLogic)
 
-export { InputLogic, InputDisplay }
+export {
+  createLogic,
+  enhance,
+  InputLogic,
+  InputDisplay
+}
 export default Input
