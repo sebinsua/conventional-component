@@ -1,4 +1,4 @@
-# `conventional-component`
+# `conventional-component` [![Build Status](https://travis-ci.org/sebinsua/conventional-component.png)](https://travis-ci.org/sebinsua/conventional-component) [![npm version](https://badge.fury.io/js/conventional-component.svg)](https://www.npmjs.com/package/conventional-component)
 > 🏴 React components which can have their state hoisted into Redux.
 
 As I search for components with which to build an application, I frequently find otherwise excellent components which have inaccessible state. Often this means complications when integrating with Redux, due to how the state is passed in and emitted. Sometimes I will try to find a `react-redux-` variant of a component, however these unfortunately lose the ease of integration of plain React components.
@@ -19,12 +19,12 @@ export default Component
 A `Component`...
 
 1. **MUST** `export default` itself.
-  1. **MUST** store its state using `connectToState(reducer, actions)`.
-  2. **MUST** dispatch an `init(props)` action on either construction or `componentWillMount`.
+    1. **MUST** store its state using `connectToState(reducer, actions)`.
+    2. **MUST** dispatch an `init(props)` action on either construction or `componentWillMount`.
 2. **MUST** `export` its action creator functions as `actions`.
-  1. **MUST** wrap each of its actions with `withActionIdentity(actionCreator)`.
+    1. **MUST** wrap each of its actions with `withActionIdentity(actionCreator)`.
 3. **MUST** `export` its reducer as `reducer(state, action)`.
-  1. **MAY** `export` the default name for its reducer as `REDUCER_NAME`.
+    1. **MAY** `export` the default name for its reducer as `REDUCER_NAME`.
 4. **MUST** `export` its component logic as a higher-order component `withLogic(Template)`.
 5. **MUST** `export` its component template as `Template`.
 
