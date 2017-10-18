@@ -1,5 +1,7 @@
 import withActionIdentity from '../withActionIdentity'
 
+export { init } from '../actions'
+
 const prefix = 'Input'
 
 export const SET_FOCUS = `${prefix}/SET_FOCUS`

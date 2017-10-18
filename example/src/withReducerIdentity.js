@@ -2,8 +2,12 @@ import getDisplayName from './getDisplayName'
 
 const defaultEmptyArray = []
 
-function withReducerIdentity(identifiedReducer) {
-  function withIdentity(state, action) {
+const initialState = {}
+
+const toFalse = identity => false
+
+function withReducerIdentity(identifiedReducer, identifierPredicate = toFalse) {
+  function withIdentity(state = initialState, action) {
     const identities = action.identity
       ? defaultEmptyArray.concat(action.identity)
       : defaultEmptyArray
@@ -11,6 +15,9 @@ function withReducerIdentity(identifiedReducer) {
     if (identities.length > 0) {
       return identities.reduce(
         (newState, identity) => {
+          if (!identifierPredicate(identity)) {
+            return newState
+          }
           return {
             ...newState,
             [identity]: identifiedReducer(state[identity], action)

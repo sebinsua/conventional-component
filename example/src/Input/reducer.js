@@ -1,5 +1,7 @@
 import { SET_FOCUS, SET_VALUE } from './actions'
 
+const REDUCER_NAME = 'inputs'
+
 const initialState = {
   hasFocus: false
 }
@@ -15,4 +17,5 @@ const reducer = (state = initialState, action) => {
   }
 }
 
+export { REDUCER_NAME }
 export default reducer

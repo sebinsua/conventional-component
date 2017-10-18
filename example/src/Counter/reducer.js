@@ -1,5 +1,7 @@
 import { INCREMENT } from './actions'
 
+const REDUCER_NAME = 'counters'
+
 const initialState = {
   count: 0
 }
@@ -13,4 +15,5 @@ const reducer = (state = initialState, action) => {
   }
 }
 
+export { REDUCER_NAME }
 export default reducer

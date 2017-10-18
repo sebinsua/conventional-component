@@ -14,11 +14,9 @@ const bindIdentityToActionCreator = identity => actionCreator => {
 const bindIdentityToActionCreators = (
   actions,
   props = defaultEmptyObject,
-  identifier = defaultIdentifier,
+  identifier = defaultIdentifier
 ) => {
-  const bind = bindIdentityToActionCreator(
-    identifier(props)
-  )
+  const bind = bindIdentityToActionCreator(identifier(props))
 
   const actionCreatorKeys = Object.keys(actions).filter(
     actionCreatorKey => typeof actions[actionCreatorKey] === 'function'
@@ -28,18 +26,9 @@ const bindIdentityToActionCreators = (
     return {
       ...boundActionCreators,
       [actionCreatorKey]: boundActionCreator
+    }
   }, {})
 }
-
-// NOTE: Move this into the example document...
-// function createMapDispatchToProps() {
-//   return (dispatch, props) => {
-//     return bindActionCreators(
-//       bindIdentityToActionCreators(actions, props),
-//       dispatch
-//     )
-//   }
-// }
 
 export { bindIdentityToActionCreator }
 export default bindIdentityToActionCreators

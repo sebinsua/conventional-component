@@ -30,4 +30,4 @@ function withMapStateToPropsIdentity(
   return withIdentity
 }
 
-export default withActionIdentity
+export default withMapStateToPropsIdentity

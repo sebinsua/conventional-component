@@ -1,8 +1,13 @@
-import Counter from './Counter'
-import Template from './CounterDisplay'
+import { compose } from 'recompose'
+import connectToState from '../connectToState'
+
+import CounterDisplay from './CounterDisplay'
 import withLogic from './withLogic'
 import reducer from './reducer'
 import * as actions from './actions'
 
-export { actions, reducer, withLogic, Template }
+const enhance = compose(connectToState(reducer, actions), withLogic)
+
+const Counter = enhance(CounterDisplay)
+
 export default Counter

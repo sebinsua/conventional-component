@@ -1,20 +1,8 @@
-import { compose, withHandlers } from 'recompose'
-import connectToState from '../connectToState'
-
-import CounterDisplay from './CounterDisplay'
-import reducer from './reducer'
+import Counter from './Counter'
+import Template from './CounterDisplay'
+import withLogic from './withLogic'
+import reducer, { REDUCER_NAME } from './reducer'
 import * as actions from './actions'
 
-const enhance = compose(
-  connectToState(reducer, actions),
-  withHandlers({
-    increment: props => event => {
-      event.preventDefault()
-      props.increment()
-    }
-  })
-)
-
-const Counter = enhance(CounterDisplay)
-
+export { actions, reducer, withLogic, Template, REDUCER_NAME }
 export default Counter

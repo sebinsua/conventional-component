@@ -5,8 +5,10 @@
   "dependencies": {
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
+    "react-redux": "^5.0.6",
     "react-scripts": "1.0.13",
-    "recompose": "^0.25.0"
+    "recompose": "^0.25.0",
+    "redux": "^3.7.2"
   },
   "scripts": {
     "start": "react-scripts start",

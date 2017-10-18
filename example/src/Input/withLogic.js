@@ -5,6 +5,10 @@ import InputDisplay from './InputDisplay'
 
 function withLogic(Template = InputDisplay) {
   class Input extends Component {
+    componentWillMount() {
+      this.props.init(this.props)
+    }
+
     onBlur = event => {
       event.preventDefault()
       return this.props.setFocus(false)

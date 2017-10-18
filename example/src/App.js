@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import Counter from './Counter'
-import Input, { Template as InputTemplate } from './Input'
+import ReactTest from './ReactTest'
+import ReduxTest from './ReduxTest'
 
 import logo from './logo.svg'
 import './App.css'
@@ -16,9 +16,8 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
-        <Counter id="1" />
-        <Input name="input-name-1" />
-        <Input name="input-name-2">{InputTemplate}</Input>
+        <ReactTest />
+        <ReduxTest />
       </div>
     )
   }
