@@ -1,3 +1,3 @@
 const defaultIdentifier = ({ id }) => `Component/${id}`
 
-export default defaultIdentifier;
+export default defaultIdentifier

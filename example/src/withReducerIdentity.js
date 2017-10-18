@@ -1,15 +1,19 @@
 import getDisplayName from './getDisplayName'
 
+const defaultEmptyArray = []
+
 function withReducerIdentity(identifiedReducer) {
   function withIdentity(state, action) {
-    const identities = action.identity ? [].concat(action.identity) : []
+    const identities = action.identity
+      ? defaultEmptyArray.concat(action.identity)
+      : defaultEmptyArray
 
     if (identities.length > 0) {
       return identities.reduce(
         (newState, identity) => {
           return {
             ...newState,
-            [identity]: identifiedReducer(state, action)
+            [identity]: identifiedReducer(state[identity], action)
           }
         },
         { ...state }

@@ -1,7 +1,10 @@
-const prefix = '@@connectToState'
+import withActionIdentity from './withActionIdentity'
+
+const prefix = 'conventional-component'
 
 export const INIT = `${prefix}/INIT`
 
-export function init() {
-  return { type: INIT }
-}
+export const init = withActionIdentity((props = {}) => ({
+  type: INIT,
+  payload: props
+}))

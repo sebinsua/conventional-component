@@ -1,6 +1,8 @@
 import getDisplayName from './getDisplayName'
 import defaultIdentifier from './defaultIdentifier'
 
+const defaultEmptyObject = {}
+
 const bindIdentityToActionCreator = identity => actionCreator => {
   const fn = (...args) => actionCreator(identity, ...args)
 
@@ -11,7 +13,7 @@ const bindIdentityToActionCreator = identity => actionCreator => {
 
 const bindIdentityToActionCreators = (
   actions,
-  props = {},
+  props = defaultEmptyObject,
   identifier = defaultIdentifier,
 ) => {
   const bind = bindIdentityToActionCreator(
@@ -29,6 +31,7 @@ const bindIdentityToActionCreators = (
   }, {})
 }
 
+// NOTE: Move this into the example document...
 // function createMapDispatchToProps() {
 //   return (dispatch, props) => {
 //     return bindActionCreators(

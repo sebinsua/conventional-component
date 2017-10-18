@@ -25,17 +25,12 @@ const bindActionCreators = (actions = {}, dispatch) => {
   }, {})
 }
 
-const connectToState = (
-  reducer,
-  actionCreators
-) => BaseComponent => {
+const connectToState = (reducer, actionCreators) => BaseComponent => {
   const factory = createFactory(BaseComponent)
   class ConnectToState extends Component {
+    state = reducer(undefined, init(undefined, this.props))
 
-    state = reducer(undefined, init())
-
-    dispatch = action =>
-      this.setState(state => reducer(state, action))
+    dispatch = action => this.setState(state => reducer(state, action))
 
     actionCreators = bindActionCreators(actionCreators, this.dispatch)
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Counter from './Counter'
-import Input, { InputDisplay } from './Input'
+import Input, { Template as InputTemplate } from './Input'
 
 import logo from './logo.svg'
 import './App.css'
@@ -18,7 +18,7 @@ class App extends Component {
         </p>
         <Counter id="1" />
         <Input name="input-name-1" />
-        <Input name="input-name-2">{InputDisplay}</Input>
+        <Input name="input-name-2">{InputTemplate}</Input>
       </div>
     )
   }
