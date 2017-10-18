@@ -5,7 +5,7 @@ As I search for components with which to build an application, I frequently find
 
 This is a proposal to build components out of reducers and actions and a library to help do so. The intention is to make it easy to write standardised components which (1) can be quickly installed into an app, and (2) can have their state hoisted into Redux if the rest of the app needs to consume it.
 
-It's loosely inspired on the conventions within [`erikras/ducks-modular-redux`](https://github.com/erikras/ducks-modular-redux).
+It's loosely inspired from the conventions within [`erikras/ducks-modular-redux`](https://github.com/erikras/ducks-modular-redux).
 
 ## Convention
 
