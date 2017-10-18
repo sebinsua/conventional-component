@@ -32,7 +32,7 @@ A `Component`...
 
 ### Component
 
-The best way to understand the convention is to read [some example code for an `Input` component](./tree/master/src/Input).
+The best way to understand the convention is to read [some example code for an `Input` component](./example/src/Input).
 
 ```js
 import Input from './Input'
@@ -47,7 +47,7 @@ export default Input
 
 ### Redux
 
-The best way to understand how the state can be hoisted into Redux is to read [some example code in which this is done (`ReduxTest`)](./blob/master/example/src/ReduxTest.js).
+The best way to understand how the state can be hoisted into Redux is to read [some example code in which this is done (`ReduxTest`)](./example/src/ReduxTest.js).
 
 ```js
 import React from 'react'
