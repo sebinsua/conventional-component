@@ -1,6 +1,6 @@
-import withActionIdentity from '../withActionIdentity'
+import { withActionIdentity } from 'conventional-component'
 
-export { init } from '../actions'
+export { init } from 'conventional-component'
 
 const prefix = 'Counter'
 

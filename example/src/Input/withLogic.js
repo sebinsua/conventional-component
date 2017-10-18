@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import receiveChildrenAsFunction from '../receiveChildrenAsFunction'
+import { receiveChildrenAsFunction } from 'conventional-component'
 
 import InputDisplay from './InputDisplay'
 

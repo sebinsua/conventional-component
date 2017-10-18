@@ -2,9 +2,11 @@ import React from 'react'
 import { compose } from 'recompose'
 import { bindActionCreators, createStore, combineReducers } from 'redux'
 import { connect, Provider } from 'react-redux'
-import withReducerIdentity from './withReducerIdentity'
-import mapStateToPropsIdentity from './withMapStateToPropsIdentity'
-import bindIdentityToActionCreators from './bindIdentityToActionCreators'
+import {
+  withReducerIdentity,
+  withMapStateToPropsIdentity,
+  bindIdentityToActionCreators
+} from 'conventional-component'
 
 import {
   actions as counterActions,
@@ -47,7 +49,7 @@ function createCounterMapDispatchToProps() {
 
 const Counter = compose(
   connect(
-    mapStateToPropsIdentity(counterReducerName, counterIdentifier),
+    withMapStateToPropsIdentity(counterReducerName, counterIdentifier),
     createCounterMapDispatchToProps
   ),
   withCounterLogic
@@ -66,7 +68,7 @@ function createInputMapDispatchToProps() {
 
 const Input = compose(
   connect(
-    mapStateToPropsIdentity(inputReducerName, inputIdentifier),
+    withMapStateToPropsIdentity(inputReducerName, inputIdentifier),
     createInputMapDispatchToProps
   ),
   withInputLogic

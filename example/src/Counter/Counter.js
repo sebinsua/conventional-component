@@ -1,5 +1,5 @@
 import { compose } from 'recompose'
-import connectToState from '../connectToState'
+import { connectToState } from 'conventional-component'
 
 import CounterDisplay from './CounterDisplay'
 import withLogic from './withLogic'
