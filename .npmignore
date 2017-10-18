@@ -1,0 +1,8 @@
+src/
+example/
+.babelrc
+.editorconfig
+.flowconfig
+.npmignore
+.prettierrc
+.travis.yml
