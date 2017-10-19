@@ -10,7 +10,15 @@ It's loosely inspired from the conventions within [`erikras/ducks-modular-redux`
 ## Convention
 
 ```js
-export { actions, reducer, withLogic, Template, REDUCER_NAME }
+export {
+  actions,
+  reducer,
+  withLogic,
+  Template,
+  REDUCER_NAME,
+  COMPONENT_NAME,
+  COMPONENT_KEY
+}
 export default Component
 ```
 
@@ -20,12 +28,14 @@ A `Component`...
 
 1. **MUST** `export default` itself.
     1. **MUST** store its state using `connectToState(reducer, actions)`.
-    2. **MUST** dispatch an `init(props)` action on either construction or `componentWillMount`.
+    2. **MUST** dispatch an `init(identity, props)` action on either construction or `componentWillMount`.
+    3. **MUST** `export` the name of the component as `COMPONENT_NAME`.
+    4. **MUST** `export` the primary key of each of the components as `COMPONENT_KEY` (e.g. `id`, `name`).
 2. **MUST** `export` its action creator functions as `actions`.
-    1. **MUST** wrap each of its actions with `withActionIdentity(actionCreator)`.
+    1. **MUST** either wrap each of its actions with `withActionIdentity(actionCreator)` or use action creators with the same signature.
 3. **MUST** `export` its reducer as `reducer(state, action)`.
     1. **MAY** `export` the default name for its reducer as `REDUCER_NAME`.
-4. **MUST** `export` its component logic as a higher-order component `withLogic(Template)`.
+4. **MUST** `export` its component logic as a higher-order component (HOC) `withLogic(Template)`.
 5. **MUST** `export` its component template as `Template`.
 
 ## Example
@@ -35,87 +45,70 @@ A `Component`...
 The best way to understand the convention is to read [some example code for an `Input` component](./example/src/Input).
 
 ```js
-import Input from './Input'
+import Input, { COMPONENT_NAME, COMPONENT_KEY } from './Input'
 import Template from './InputDisplay'
 import withLogic from './withLogic'
 import reducer, { REDUCER_NAME } from './reducer'
 import * as actions from './actions'
 
-export { actions, reducer, withLogic, Template, REDUCER_NAME }
+export {
+  actions,
+  reducer,
+  withLogic,
+  Template,
+  REDUCER_NAME,
+  COMPONENT_NAME,
+  COMPONENT_KEY
+}
 export default Input
 ```
 
 ### Redux
 
-The best way to understand how the state can be hoisted into Redux is to read [some example code in which this is done (`ReduxTest`)](./example/src/ReduxTest.js).
+The best way to understand how the state can be hoisted into Redux is to read [some example code in which this is done (`ReduxTest`)](./example/src/Redux).
+
+#### Component
 
 ```js
-import React from 'react'
-import { compose } from 'recompose'
-import { bindActionCreators, createStore, combineReducers } from 'redux'
-import { connect, Provider } from 'react-redux'
-import {
-  withReducerIdentity,
-  withMapStateToPropsIdentity,
-  bindIdentityToActionCreators
-} from 'conventional-component'
+import { asConnectedComponent } from 'conventional-component'
 
 import {
-  actions as inputActions,
-  reducer as inputReducer,
-  withLogic as withInputLogic,
-  Template as InputTemplate,
-  REDUCER_NAME as inputReducerName
-} from './Input'
+  actions,
+  withLogic,
+  Template,
+  REDUCER_NAME,
+  COMPONENT_NAME,
+  COMPONENT_KEY
+} from '../../Input'
 
-const store = createStore(
-  combineReducers({
-    [inputReducerName]: withReducerIdentity(inputReducer, identity =>
-      identity.startsWith('Input')
-    )
-  }),
-  {},
-  window.devToolsExtension ? window.devToolsExtension() : f => f
-)
+export default asConnectedComponent({
+  actions,
+  withLogic,
+  Template,
+  REDUCER_NAME,
+  COMPONENT_NAME,
+  COMPONENT_KEY
+})
+```
 
-const inputIdentifier = ({ name }) => `Input/${name}`
+#### Reducer
 
-function createInputMapDispatchToProps() {
-  return (dispatch, props) => {
-    return bindActionCreators(
-      bindIdentityToActionCreators(inputActions, props, inputIdentifier),
-      dispatch
-    )
-  }
-}
+```js
+import { withReducerIdentity } from 'conventional-component'
 
-const Input = compose(
-  connect(
-    withMapStateToPropsIdentity(inputReducerName, inputIdentifier),
-    createInputMapDispatchToProps
-  ),
-  withInputLogic
-)(InputTemplate)
+import { reducer, COMPONENT_NAME, REDUCER_NAME } from '../../Input'
 
-const ReduxTest = () => (
-  <Provider store={store}>
-    <div className="App-redux">
-      <Input name="input-name-3" />
-      <Input name="input-name-4" />
-    </div>
-  </Provider>
-)
-
-export default ReduxTest
+export { REDUCER_NAME }
+export default withReducerIdentity(COMPONENT_NAME, reducer)
 ```
 
 ## API
 
 ### Component
 
-#### `init(identity, props)`
-
 #### `connectToState(reducer, actions)`
+
+#### `init(identity, props)`
 
 #### `withActionIdentity(actionCreator)`
 
@@ -123,11 +116,15 @@ export default ReduxTest
 
 ### Redux
 
-#### `withReducerIdentity(identifiedReducer, identifierPredicate)`
+#### `asConnectedComponent(conventionalComponentConfiguration)`
 
-#### `bindIdentityToActionCreators(actionCreators, props, identifier)`
+###### `createIdentifier(componentName, componentKey)`
 
-#### `withMapStateToPropsIdentity(reducerName, identifier, structuredSelector)`
+###### `bindIdentityToActionCreators(identifier, actionCreators) => identifiedActions(props): ActionCreators`
+
+###### `createMapStateToProps(reducerName, identifier, structuredSelector)`
+
+#### `withReducerIdentity(identifierPredicate, identifiedReducer)`
 
 ## Install
 
