@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.1.0"></a>
+# [0.1.0](https://github.com/sebinsua/conventional-component/compare/v0.0.1...v0.1.0) (2017-10-19)
+
+
+### Features
+
+* asConnectedComponent to remove the boilerplate ([30d79af](https://github.com/sebinsua/conventional-component/commit/30d79af))
+
+
+
 <a name="0.0.1"></a>
 ## 0.0.1 (2017-10-18)
 
