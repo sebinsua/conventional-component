@@ -18,7 +18,7 @@
     "precommit": "lint-staged",
     "prepush": "npm test",
     "test": "jest --modulePathIgnorePatterns example/",
-    "build": "babel src --out-dir dist --ignore __tests__/*.js",
+    "build": "rimraf dist/ && babel src --out-dir dist --ignore __tests__/*.js",
     "release": "npm test && npm run build && standard-version"
   },
   "peerDependencies": {
@@ -45,6 +45,7 @@
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-test-renderer": "^15.6.1",
+    "rimraf": "^2.6.2",
     "standard-version": "^4.2.0"
   }
 }
