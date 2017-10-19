@@ -113,7 +113,7 @@ export default ReduxTest
 
 ### Component
 
-#### `init(props)`
+#### `init(identity, props)`
 
 #### `connectToState(reducer, actions)`
 
@@ -125,7 +125,7 @@ export default ReduxTest
 
 #### `withReducerIdentity(identifiedReducer, identifierPredicate)`
 
-#### `bindIdentityToActionCreators(actionCreators)`
+#### `bindIdentityToActionCreators(actionCreators, props, identifier)`
 
 #### `withMapStateToPropsIdentity(reducerName, identifier, structuredSelector)`
 

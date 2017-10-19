@@ -12,10 +12,9 @@ const bindIdentityToActionCreator = identity => actionCreator => {
 }
 
 const bindIdentityToActionCreators = (
-  actions,
-  props = defaultEmptyObject,
-  identifier = defaultIdentifier
-) => {
+  identifier = defaultIdentifier,
+  actions
+) => (props = defaultEmptyObject) => {
   const bind = bindIdentityToActionCreator(identifier(props))
 
   const actionCreatorKeys = Object.keys(actions).filter(

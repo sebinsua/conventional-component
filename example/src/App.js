@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import ReactTest from './ReactTest'
-import ReduxTest from './ReduxTest'
+import ReactTest from './React'
+import ReduxTest from './Redux'
 
 import logo from './logo.svg'
 import './App.css'

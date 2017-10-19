@@ -1,7 +1,7 @@
 import React from 'react'
 
-import Counter from './Counter'
-import Input, { Template as InputTemplate } from './Input'
+import Counter from '../Counter'
+import Input, { Template as InputTemplate } from '../Input'
 
 const ReactTest = () => (
   <div className="App-react">

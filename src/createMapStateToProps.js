@@ -5,7 +5,7 @@ const identity = v => v
 
 const defaultEmptyObject = {}
 
-function withMapStateToPropsIdentity(
+function createMapStateToProps(
   reducerName,
   identifier = defaultIdentifier,
   structuredSelector = identity
@@ -30,4 +30,4 @@ function withMapStateToPropsIdentity(
   return withIdentity
 }
 
-export default withMapStateToPropsIdentity
+export default createMapStateToProps

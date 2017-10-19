@@ -4,9 +4,14 @@ const defaultEmptyArray = []
 
 const initialState = {}
 
-const toFalse = identity => false
+const createDefaultIdentifierPredicate = componentName => identity =>
+  identity.startsWith(componentName)
 
-function withReducerIdentity(identifiedReducer, identifierPredicate = toFalse) {
+function withReducerIdentity(identifierPredicate, identifiedReducer) {
+  if (typeof identifierPredicate === 'string') {
+    identifierPredicate = createDefaultIdentifierPredicate(identifierPredicate)
+  }
+
   function withIdentity(state = initialState, action) {
     const identities = action.identity
       ? defaultEmptyArray.concat(action.identity)

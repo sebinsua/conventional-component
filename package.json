@@ -22,7 +22,9 @@
     "release": "npm test && npm run build && standard-version"
   },
   "peerDependencies": {
-    "react": "^0.14.0 || ^15.0.0-0 || ^16.0.0-0"
+    "react": "^0.14.0 || ^15.0.0-0 || ^16.0.0-0",
+    "react-redux": "*",
+    "redux": "*"
   },
   "devDependencies": {
     "@commitlint/cli": "^3.2.0",
