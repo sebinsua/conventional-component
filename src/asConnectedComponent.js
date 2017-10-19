@@ -1,5 +1,4 @@
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
+import { connect, bindActionCreators } from './redux'
 
 import createIdentifier from './createIdentifier'
 import createMapStateToProps from './createMapStateToProps'
@@ -13,6 +12,12 @@ function asConnectedComponent({
   COMPONENT_NAME,
   COMPONENT_KEY
 }) {
+  if (!connect || !bindActionCreators) {
+    throw new Error(
+      'conventional-component#asConnectedComponent() cannot be used unless react-redux and redux are installed.'
+    )
+  }
+
   const identifier = createIdentifier(COMPONENT_NAME, COMPONENT_KEY)
 
   const identifiedActions = bindIdentityToActionCreators(identifier, actions)
