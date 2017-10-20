@@ -10,6 +10,7 @@ It's loosely inspired from the conventions within [`erikras/ducks-modular-redux`
 #### :warning: :construction_worker: :wrench: WIP :hammer: :construction: :warning: 
 
 - [ ] Bug: `componentWillUnmount` *must* dispatch a `destroy(identity)`.
+- [ ] Feat: update an ordered list of `mountedIdentities`.
 - [ ] TypeScript definitions.
 - [ ] Flowtype definitions.
 - [ ] Unit tests. *(NOTE: It's already usable as the code is working correctly within the [`example/src`](./example/src)).*
