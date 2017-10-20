@@ -9,7 +9,8 @@ It's loosely inspired from the conventions within [`erikras/ducks-modular-redux`
 
 #### :warning: :construction_worker: :wrench: Ready-for-use yet WIP :hammer: :construction: :warning: 
 
-- [ ] **Feat**: `withLogic` should use a HOC to dispatch the `init` and `destroy` actions, but also document that this is just a helper provided and you can do the same yourself if you wish.
+- [ ] **Feat**: `withLogic` should use a HOC to dispatch the `init`, `props` and `destroy` actions, but also document that this is just a helper provided and you can do the same yourself if you wish.
+    - [ ] **Bug**: `componentWillReceiveProps` *must* dispatch a `props(identity, props)`.
     - [ ] **Bug**: `componentWillUnmount` *must* dispatch a `destroy(identity)`.
     - [ ] **Bug**: `bindIdentityToActionCreators` should always return `init` and `destroy` action creators. Should be renamed to be more descriptive of intention.
 - [ ] **Feat**: write `withReducerIdentities({ [COMPONENT_NAME]: componentReducer })` as an analogue to `multireducer` for storing the state of more than one component.
