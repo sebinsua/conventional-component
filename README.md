@@ -5,15 +5,16 @@ As I search for components with which to build an application, I frequently find
 
 This is a proposal to build components out of reducers and actions and a library to help do so. The intention is to make it easy to write standardised components which (1) can be quickly installed into an app, and (2) can have their state hoisted into Redux if the rest of the app needs to consume it.
 
-It's loosely inspired from the conventions within [`erikras/ducks-modular-redux`](https://github.com/erikras/ducks-modular-redux).
+It's loosely inspired from the conventions within [`erikras/ducks-modular-redux`](https://github.com/erikras/ducks-modular-redux). It also has some similarities to [`multireducer`](https://github.com/erikras/multireducer) however due to its use of convention it's decoupled from redux.
 
 #### :warning: :construction_worker: :wrench: WIP :hammer: :construction: :warning: 
 
 - [ ] Bug: `componentWillUnmount` *must* dispatch a `destroy(identity)`.
+- [ ] Feat: write `withReducerIdentities({ [COMPONENT_NAME]: componentReducer })` as an analogue to `multireducer` for storing the state of more than one component.
 - [ ] Feat: update an ordered list of `mountedIdentities`.
-- [ ] TypeScript definitions.
-- [ ] Flowtype definitions.
-- [ ] Unit tests. *(NOTE: It's already usable as the code is working correctly within the [`example/src`](./example/src)).*
+- [ ] Feat: TypeScript definitions.
+- [ ] Chore: Flowtype definitions.
+- [ ] Chore: Unit tests. *(NOTE: It's already usable as the code is working correctly within the [`example/src`](./example/src)).*
 
 ## Convention
 
