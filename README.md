@@ -9,14 +9,16 @@ It's loosely inspired from the conventions within [`erikras/ducks-modular-redux`
 
 #### :warning: :construction_worker: :wrench: WIP :hammer: :construction: :warning: 
 
-- [ ] Feat: `withLogic` should use a HOC to dispatch the `init` and `destroy` actions, but also document that this is just a helper provided and you can do the same yourself if you wish.
-    - [ ] Bug: `componentWillUnmount` *must* dispatch a `destroy(identity)`.
-    - [ ] Bug: `bindIdentityToActionCreators` should always return `init` and `destroy` action creators. Should be renamed to be more descriptive of intention.
-- [ ] Feat: write `withReducerIdentities({ [COMPONENT_NAME]: componentReducer })` as an analogue to `multireducer` for storing the state of more than one component.
-- [ ] Feat: update an ordered list of `mountedIdentities`.
-- [ ] Feat: TypeScript definitions.
-- [ ] Chore: Flowtype definitions.
-- [ ] Chore: Unit tests. *(NOTE: It's already usable as the code is working correctly within the [`example/src`](./example/src)).*
+- [ ] **Feat**: `withLogic` should use a HOC to dispatch the `init` and `destroy` actions, but also document that this is just a helper provided and you can do the same yourself if you wish.
+    - [ ] **Bug**: `componentWillUnmount` *must* dispatch a `destroy(identity)`.
+    - [ ] **Bug**: `bindIdentityToActionCreators` should always return `init` and `destroy` action creators. Should be renamed to be more descriptive of intention.
+- [ ] **Feat**: write `withReducerIdentities({ [COMPONENT_NAME]: componentReducer })` as an analogue to `multireducer` for storing the state of more than one component.
+- [ ] **Feat**: update an ordered list of `mountedIdentities` within `withReducer`.
+- [ ] **Bug**: `asConnectedComponent` must be able to set reasonable defaults and throw errors if not given required values.
+- [ ] **Feat**: TypeScript definitions.
+- [ ] **Chore**: Flowtype definitions.
+- [ ] **Chore**: Unit tests. *(NOTE: It's already usable as the code is working correctly within the [`example/src`](./example/src)).*
+- [ ] **Future**: Consider how an `asMobxComponent` could be written to automatically lift the state into MobX.
 
 ## Convention
 
