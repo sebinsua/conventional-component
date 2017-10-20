@@ -42,6 +42,7 @@ A `Component`...
 3. **MUST** `export` its reducer as `reducer(state, action)`.
     1. **MAY** `export` the default name for its reducer as `REDUCER_NAME`.
 4. **MUST** `export` its component logic as a higher-order component (HOC) `withLogic(Template)`.
+    1. **MAY** implement `receiveChildrenAsFunction` in order to render a user-specified function-as-a-child or otherwise fallback to rendering the `Template`.
 5. **MUST** `export` its component template as `Template`.
 
 ## Example
