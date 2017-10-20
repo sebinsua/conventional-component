@@ -7,7 +7,7 @@ This is a proposal to build components out of reducers and actions and a library
 
 It's loosely inspired from the conventions within [`erikras/ducks-modular-redux`](https://github.com/erikras/ducks-modular-redux). It also has some similarities to [`multireducer`](https://github.com/erikras/multireducer) however due to its use of convention it's decoupled from redux.
 
-#### :warning: :construction_worker: :wrench: WIP :hammer: :construction: :warning: 
+#### :warning: :construction_worker: :wrench: Ready-for-use yet WIP :hammer: :construction: :warning: 
 
 - [ ] **Feat**: `withLogic` should use a HOC to dispatch the `init` and `destroy` actions, but also document that this is just a helper provided and you can do the same yourself if you wish.
     - [ ] **Bug**: `componentWillUnmount` *must* dispatch a `destroy(identity)`.
