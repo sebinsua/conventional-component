@@ -7,6 +7,12 @@ This is a proposal to build components out of reducers and actions and a library
 
 It's loosely inspired from the conventions within [`erikras/ducks-modular-redux`](https://github.com/erikras/ducks-modular-redux).
 
+#### :warning: :construction_worker: :wrench: WIP :hammer: :construction: :warning: 
+
+- [ ] TypeScript definitions.
+- [ ] Flowtype definitions.
+- [ ] Unit tests. *(NOTE: It's already usable as the code is working correctly within the [`example/src`](./example/src)).*
+
 ## Convention
 
 ```js
@@ -124,6 +130,28 @@ function withLogic(Template = InputDisplay) {
 }
 
 export default withLogic
+```
+
+#### `Input`
+
+```js
+import { compose } from 'recompose'
+import { connectToState } from 'conventional-component'
+
+import InputDisplay from './InputDisplay'
+import withLogic from './withLogic'
+import reducer from './reducer'
+import * as actions from './actions'
+
+const COMPONENT_NAME = 'Input'
+const COMPONENT_KEY = 'name'
+
+const enhance = compose(connectToState(reducer, actions), withLogic)
+
+const Input = enhance(InputDisplay)
+
+export { COMPONENT_NAME, COMPONENT_KEY }
+export default Input
 ```
 
 ### Redux
