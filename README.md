@@ -13,7 +13,7 @@ It's loosely inspired from the conventions within [`erikras/ducks-modular-redux`
     - [ ] **Bug**: `componentWillUnmount` *must* dispatch a `destroy(identity)`.
     - [ ] **Bug**: `bindIdentityToActionCreators` should always return `init` and `destroy` action creators. Should be renamed to be more descriptive of intention.
 - [ ] **Feat**: write `withReducerIdentities({ [COMPONENT_NAME]: componentReducer })` as an analogue to `multireducer` for storing the state of more than one component.
-- [ ] **Feat**: update an ordered list of `mountedIdentities` within `withReducer`.
+- [ ] **Feat**: update an ordered list of `mountedIdentities` within `withReducerIdentity`.
 - [ ] **Bug**: `asConnectedComponent` must be able to set reasonable defaults and throw errors if not given required values.
 - [ ] **Feat**: TypeScript definitions.
 - [ ] **Chore**: Flowtype definitions.
