@@ -33,8 +33,8 @@ export default Component
 A `Component`...
 
 1. **MUST** `export default` itself.
-    2. **MUST** `export` the name of the component as `COMPONENT_NAME`.
-    3. **MUST** `export` the primary key of each of the components as `COMPONENT_KEY` (e.g. `id`, `name`).
+    1. **MUST** `export` the name of the component as `COMPONENT_NAME`.
+    2. **MUST** `export` the primary key of each of the components as `COMPONENT_KEY` (e.g. `id`, `name`).
 2. **MUST** store its state using `connectToState(reducer, actions)`.
 3. **MUST** `export` its component logic as a higher-order component (HOC) `withLogic(Template)`.
     1. **MUST** dispatch an `init(identity, props)` action on either construction or `componentWillMount`.
