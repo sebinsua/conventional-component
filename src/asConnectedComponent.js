@@ -19,7 +19,7 @@ function asConnectedComponent(
 ) {
   if (!connect || !bindActionCreators) {
     throw new Error(
-      'conventional-component#asConnectedComponent() cannot be used unless react-redux and redux are installed.'
+      'conventional-component#asConnectedComponent() cannot be used unless redux and react-redux are installed.'
     )
   }
 
