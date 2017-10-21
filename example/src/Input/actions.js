@@ -1,7 +1,5 @@
 import { withActionIdentity } from 'conventional-component'
 
-export { init } from 'conventional-component'
-
 const prefix = 'Input'
 
 export const SET_FOCUS = `${prefix}/SET_FOCUS`

@@ -1,26 +1,55 @@
 import { connect, bindActionCreators } from './redux'
 
+import getDisplayName from './getDisplayName'
 import createIdentifier from './createIdentifier'
 import createMapStateToProps from './createMapStateToProps'
-import bindIdentityToActionCreators from './bindIdentityToActionCreators'
+import createIdentifiedActionCreators from './createIdentifiedActionCreators'
 
-function asConnectedComponent({
-  actions,
-  withLogic,
-  Template,
-  REDUCER_NAME,
-  COMPONENT_NAME,
-  COMPONENT_KEY
-}) {
+const DEFAULT_COMPONENT_KEY = 'id'
+
+function asConnectedComponent(
+  {
+    actions,
+    withLogic,
+    Template,
+    REDUCER_NAME,
+    COMPONENT_NAME = getDisplayName(Template),
+    COMPONENT_KEY = DEFAULT_COMPONENT_KEY
+  } = {}
+) {
   if (!connect || !bindActionCreators) {
     throw new Error(
       'conventional-component#asConnectedComponent() cannot be used unless react-redux and redux are installed.'
     )
   }
 
+  if (!actions || typeof actions !== 'object') {
+    throw new Error(
+      'conventional-component#asConnectedComponent() should be passed an `actions` object containing action creators.'
+    )
+  }
+
+  if (!withLogic || typeof withLogic !== 'function') {
+    throw new Error(
+      'conventional-component#asConnectedComponent() should be passed a `withLogic()` higher-order component.'
+    )
+  }
+
+  if (!Template || typeof Template !== 'function') {
+    throw new Error(
+      'conventional-component#asConnectedComponent() should be passed a `Template` component.'
+    )
+  }
+
+  if (!REDUCER_NAME || typeof REDUCER_NAME !== 'string') {
+    throw new Error(
+      'conventional-component#asConnectedComponent() should be passed the `REDUCER_NAME` key that contains the state.'
+    )
+  }
+
   const identifier = createIdentifier(COMPONENT_NAME, COMPONENT_KEY)
 
-  const identifiedActions = bindIdentityToActionCreators(identifier, actions)
+  const identifiedActions = createIdentifiedActionCreators(identifier, actions)
 
   const mapStateToProps = createMapStateToProps(REDUCER_NAME, identifier)
 

@@ -1,14 +1,13 @@
 import React, { Component } from 'react'
-import { receiveChildrenAsFunction } from 'conventional-component'
+import {
+  receiveChildrenAsFunction,
+  withLifecycleStateLogic
+} from 'conventional-component'
 
 import InputDisplay from './InputDisplay'
 
 function withLogic(Template = InputDisplay) {
   class Input extends Component {
-    componentWillMount() {
-      this.props.init(this.props)
-    }
-
     onBlur = event => {
       event.preventDefault()
       return this.props.setFocus(false)
@@ -50,7 +49,9 @@ function withLogic(Template = InputDisplay) {
     }
   }
 
-  return Input
+  return withLifecycleStateLogic({
+    shouldDispatchReceiveNextProps: false
+  })(Input)
 }
 
 export default withLogic

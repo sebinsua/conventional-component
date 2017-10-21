@@ -1,11 +1,8 @@
-import { compose, lifecycle, withHandlers } from 'recompose'
+import { compose, withHandlers } from 'recompose'
+import { withLifecycleStateLogic } from 'conventional-component'
 
 const withLogic = compose(
-  lifecycle({
-    componentWillMount() {
-      this.props.init(this.props)
-    }
-  }),
+  withLifecycleStateLogic({ shouldDispatchReceiveNextProps: false }),
   withHandlers({
     increment: props => event => {
       event.preventDefault()

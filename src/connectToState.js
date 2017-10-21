@@ -1,7 +1,7 @@
 import { createFactory, Component } from 'react'
 import getDisplayName from './getDisplayName'
 
-import { init } from './actions'
+import { init, receiveNextProps, destroy } from './actions'
 
 const bindActionCreator = dispatch => actionCreator => {
   const fn = (...args) => dispatch(actionCreator(undefined, ...args))
@@ -32,7 +32,10 @@ const connectToState = (reducer, actionCreators) => BaseComponent => {
 
     dispatch = action => this.setState(state => reducer(state, action))
 
-    actionCreators = bindActionCreators(actionCreators, this.dispatch)
+    actionCreators = bindActionCreators(
+      { ...actionCreators, init, receiveNextProps, destroy },
+      this.dispatch
+    )
 
     render() {
       return factory({
