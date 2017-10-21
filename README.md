@@ -216,8 +216,10 @@ It's implemented as a higher-order component (HOC) and therefore returns a funct
 
 #### `withLifecycleStateLogic({ shouldDispatchReceiveNextProps }) => LogicComponent => LifecycleLogicComponent`
 
-This is provided to wrap the component logic defined within `withLogic` and to handle the dispatching of the lifecycle
+This higher-order component (HOC) is provided to help dispatch the correct lifecycle
 actions (e.g. `init` and `destroy` when a component is added or removed from the screen.)
+
+It should be used within `withLogic` to wrap any other component logic.
 
 By default `shouldDispatchReceiveNextProps` is false.
 

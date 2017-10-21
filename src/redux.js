@@ -1,3 +1,8 @@
+// NOTE:
+// The following `peerDependencies` have been removed since the library is meant to be state management agnostic.
+// "react-redux": "*",
+// "redux": "*"
+
 let connect = false
 let bindActionCreators = false
 try {
