@@ -35,13 +35,15 @@ A `Component`...
 1. **MUST** `export default` itself.
     1. **MUST** `export` the name of the component as `COMPONENT_NAME`.
     2. **MUST** `export` the primary key of each of the components as `COMPONENT_KEY` (e.g. `id`, `name`).
-2. **MUST** store its state using `connectToState(reducer, actions)`.
+2. **MUST** store its state using a reducer and some actions.
+    1. **MAY** use the higher-order component (HOC) `connectToState(reducer, actions)` to achieve this.
 3. **MUST** `export` its component logic as a higher-order component (HOC) `withLogic(Template)`.
-    1. **MUST** dispatch an `init(identity, props)` action on either construction or `componentWillMount`.
-    2. **MAY** dispatch a `receiveNextProps(identity, props)` action on `componentWillReceiveProps`.
-    3. **MUST** dispatch a `destroy(identity)` action on `componentWillUnmount`.
-    4. **MAY** use the higher-order component (HOC) `withLifecycleStateLogic` to dispatch the lifecycle actions mentioned above.
-    5. **MAY** implement `receiveChildrenAsFunction` in order to render a user-specified function-as-a-child and otherwise fallback to rendering the `Template`.
+    1. **MUST** dispatch actions during the lifecycle of the component to describe its state.
+        1. **MUST** dispatch an `init(identity, props)` action on either construction or `componentWillMount`.
+        2. **MAY** dispatch a `receiveNextProps(identity, props)` action on `componentWillReceiveProps`.
+        3. **MUST** dispatch a `destroy(identity)` action on `componentWillUnmount`.
+        4. **MAY** use the higher-order component (HOC) `withLifecycleStateLogic` to achieve this.
+    2. **MAY** implement `receiveChildrenAsFunction` in order to render a user-specified function-as-a-child and otherwise fallback to rendering the `Template`.
 4. **MUST** `export` its action creator functions as `actions`.
     1. **MUST** either wrap each of its actions with `withActionIdentity(actionCreator)` or use action creators with the same signature.
 5. **MUST** `export` its reducer as `reducer(state, action)`.
