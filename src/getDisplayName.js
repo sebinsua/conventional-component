@@ -1,13 +1,10 @@
-const getDisplayName = (value, defaultDisplayName) => {
-  if (typeof value === 'string') {
-    return value
-  }
+// @flow
 
-  if (!value) {
-    return undefined
-  }
-
-  return value.displayName || value.name || defaultDisplayName
+const getDisplayName = (
+  value: Function,
+  defaultDisplayName: string
+): string => {
+  return (value && (value.displayName || value.name)) || defaultDisplayName
 }
 
 export default getDisplayName

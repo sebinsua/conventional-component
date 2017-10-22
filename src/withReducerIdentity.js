@@ -1,8 +1,25 @@
+// @flow
+
+import type { Identity, ComponentName } from './types'
+import type { WithIdentity } from './withActionIdentity'
+
 import getDisplayName from './getDisplayName'
 
 import { INIT, DESTROY } from './actions'
 
-const without = (arr = [], value) => {
+type WithIdentityState<ReducerState> = {
+  mountedIdentities: Array<Identity>,
+  [key: Identity]: ?ReducerState
+}
+
+type IdentifierPredicate = (identity: Identity) => boolean
+
+type Reducer<ReducerState, Actions> = (
+  state: ReducerState,
+  action: Actions
+) => ReducerState
+
+const without = (arr: Array<*> = [], value: *): Array<*> => {
   const idx = arr.indexOf(value)
   if (idx > -1) {
     return [...arr].splice(idx, 1)
@@ -16,15 +33,23 @@ const initialState = {
   mountedIdentities: []
 }
 
-const createDefaultIdentifierPredicate = componentName => identity =>
-  identity.startsWith(componentName)
+const createDefaultIdentifierPredicate = (
+  componentName: ComponentName
+): IdentifierPredicate => identity => identity.startsWith(componentName)
 
-function withReducerIdentity(identifierPredicate, identifiedReducer) {
-  if (typeof identifierPredicate === 'string') {
-    identifierPredicate = createDefaultIdentifierPredicate(identifierPredicate)
-  }
+function withReducerIdentity<ReducerState>(
+  identifierPredicate: string | IdentifierPredicate,
+  identifiedReducer: Reducer<ReducerState, *>
+) {
+  const identityMatches =
+    typeof identifierPredicate === 'string'
+      ? createDefaultIdentifierPredicate(identifierPredicate)
+      : identifierPredicate
 
-  function withIdentity(state = initialState, action) {
+  function withIdentity(
+    state: WithIdentityState<ReducerState> = initialState,
+    action: WithIdentity<*>
+  ) {
     const identities = action.identity
       ? defaultEmptyArray.concat(action.identity)
       : defaultEmptyArray
@@ -34,7 +59,7 @@ function withReducerIdentity(identifierPredicate, identifiedReducer) {
     if (identities.length > 0) {
       return identities.reduce(
         (newState, identity) => {
-          if (!identifierPredicate(identity)) {
+          if (!identityMatches(identity)) {
             return newState
           }
 

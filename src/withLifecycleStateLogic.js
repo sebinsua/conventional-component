@@ -1,8 +1,12 @@
 import { createFactory, Component } from 'react'
 import getDisplayName from './getDisplayName'
 
+type LifecyleStateConfiguration = {
+  shouldDispatchReceiveNextProps: boolean
+}
+
 const withLifecycleStateLogic = (
-  { shouldDispatchReceiveNextProps = false } = {}
+  { shouldDispatchReceiveNextProps = false }: LifecyleStateConfiguration = {}
 ) => BaseComponent => {
   const factory = createFactory(BaseComponent)
   class WithLifecycleStateLogic extends Component {
