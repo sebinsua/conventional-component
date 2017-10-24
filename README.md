@@ -11,11 +11,11 @@ It's loosely inspired from the conventions within [`erikras/ducks-modular-redux`
 
 - [ ] **Chore**: `asConnectedComponent` should use a reusable function to set the defaults.
 - [ ] **Feat**: Support `preact` components.
-- [ ] **Feat**: Support `mobx` state management.
-- [ ] **Feat**: TypeScript definitions.
-- [ ] **Chore**: Flowtype definitions.
 - [ ] **Chore**: Unit tests. *(NOTE: It's already usable as the code is working correctly within the [`example/src`](./example/src)).*
+- [ ] **Chore**: Flowtype definitions.
+- [ ] **Feat**: TypeScript definitions.
 - [ ] **Chore**: Write `is-conventional-component` CLI.
+- [ ] **Feat**: Support `mobx` state management.
 
 ## Convention
 
