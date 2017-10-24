@@ -12,7 +12,8 @@ function asConnectedComponent(
     actions,
     withLogic,
     Template,
-    REDUCER_NAME,
+    reducer,
+    REDUCER_NAME = getDisplayName(reducer),
     COMPONENT_NAME = getDisplayName(Template),
     COMPONENT_KEY = DEFAULT_COMPONENT_KEY
   } = {}
@@ -43,7 +44,7 @@ function asConnectedComponent(
 
   if (!REDUCER_NAME || typeof REDUCER_NAME !== 'string') {
     throw new Error(
-      'conventional-component#asConnectedComponent() should be passed the `REDUCER_NAME` key that contains the state.'
+      'conventional-component#asConnectedComponent() should be passed the `REDUCER_NAME` key that contains the state or given a reducer with a name.'
     )
   }
 
