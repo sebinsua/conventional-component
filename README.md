@@ -9,7 +9,7 @@ It's loosely inspired from the conventions within [`erikras/ducks-modular-redux`
 
 #### :warning: :construction_worker: :wrench: Ready-for-use yet WIP :hammer: :construction: :warning:
 
-- [ ] **Chore**: `asConnectedComponent` should use a reusable function to set the defaults.
+- [x] **Chore**: `asConnectedComponent` should use a reusable function to set the defaults.
 - [ ] **Feat**: Support `preact` components.
 - [ ] **Chore**: Unit tests. *(NOTE: It's already usable as the code is working correctly within the [`example/src`](./example/src)).*
 - [ ] **Chore**: Flowtype definitions.
