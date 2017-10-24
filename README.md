@@ -15,6 +15,7 @@ It's loosely inspired from the conventions within [`erikras/ducks-modular-redux`
 - [ ] **Feat**: TypeScript definitions.
 - [ ] **Chore**: Flowtype definitions.
 - [ ] **Chore**: Unit tests. *(NOTE: It's already usable as the code is working correctly within the [`example/src`](./example/src)).*
+- [ ] **Chore**: Write `is-conventional-component` CLI.
 
 ## Convention
 
