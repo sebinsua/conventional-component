@@ -3,12 +3,15 @@
 
 As I search for components with which to build an application, I frequently find otherwise excellent components which have inaccessible state. Often this means complications when integrating with Redux, due to how the state is passed in and emitted. Sometimes I will try to find a `react-redux-` variant of a component, however these unfortunately lose the ease of integration of plain React components.
 
-This is a proposal to build components out of reducers and actions and a library to help do so. The intention is to make it easy to write standardised components which (1) can be quickly installed into an app, and (2) can have their state hoisted into Redux if the rest of the app needs to consume it.
+This is a proposal to build components out of reducers and actions and a library to help do so. The intention is to make it easy to write standardised components which (1) can be quickly installed into an app, and (2) can have their state hoisted into another state management library (Redux, MobX, etc) if this is required.
 
 It's loosely inspired from the conventions within [`erikras/ducks-modular-redux`](https://github.com/erikras/ducks-modular-redux). It also has some similarities to [`multireducer`](https://github.com/erikras/multireducer) however due to its use of convention it's decoupled from redux.
 
 #### :warning: :construction_worker: :wrench: Ready-for-use yet WIP :hammer: :construction: :warning:
 
+- [ ] **Chore**: `asConnectedComponent` should use a reusable function to set the defaults.
+- [ ] **Feat**: Support `preact` components.
+- [ ] **Feat**: Support `mobx` state management.
 - [ ] **Feat**: TypeScript definitions.
 - [ ] **Chore**: Flowtype definitions.
 - [ ] **Chore**: Unit tests. *(NOTE: It's already usable as the code is working correctly within the [`example/src`](./example/src)).*
