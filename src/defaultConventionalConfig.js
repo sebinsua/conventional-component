@@ -1,3 +1,7 @@
+import getDisplayName from './getDisplayName'
+
+const DEFAULT_COMPONENT_KEY = 'id'
+
 const defaultConventionalConfig = (
   {
     actions,

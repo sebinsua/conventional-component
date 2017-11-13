@@ -6,8 +6,6 @@ import createMapStateToProps from './createMapStateToProps'
 import createIdentifiedActionCreators from './createIdentifiedActionCreators'
 import defaultConventionalConfig from './defaultConventionalConfig'
 
-const DEFAULT_COMPONENT_KEY = 'id'
-
 function asConnectedComponent(conventionalConfig) {
   if (!connect || !bindActionCreators) {
     throw new Error(
