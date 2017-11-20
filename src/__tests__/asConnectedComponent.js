@@ -1,0 +1,3 @@
+// TODO: Unit tests...
+
+test.skip('should create a connected component when given a conventional config', () => {})

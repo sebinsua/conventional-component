@@ -3,8 +3,10 @@ import getDisplayName from './getDisplayName'
 
 import { init, receiveNextProps, destroy } from './actions'
 
+const NO_IDENTITY = undefined
+
 const bindActionCreator = dispatch => actionCreator => {
-  const fn = (...args) => dispatch(actionCreator(undefined, ...args))
+  const fn = (...args) => dispatch(actionCreator(NO_IDENTITY, ...args))
 
   fn.displayName = getDisplayName(actionCreator, 'AnonymousBoundActionCreator')
 
@@ -25,10 +27,14 @@ const bindActionCreators = (actions = {}, dispatch) => {
   }, {})
 }
 
-const connectToState = (reducer, actionCreators) => BaseComponent => {
+const connectToState = (
+  reducer,
+  actionCreators,
+  initialState = undefined
+) => BaseComponent => {
   const factory = createFactory(BaseComponent)
   class ConnectToState extends Component {
-    state = reducer(undefined, init(undefined, this.props))
+    state = reducer(initialState, init(NO_IDENTITY, this.props))
 
     dispatch = action => this.setState(state => reducer(state, action))
 
