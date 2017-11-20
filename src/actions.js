@@ -1,21 +1,38 @@
+// @flow
+
+import type { Identity } from './types'
+import type { WithIdentity } from './withActionIdentity'
+
 import withActionIdentity from './withActionIdentity'
 
-const prefix = 'conventional-component'
+type Props = { [prop: string]: ?any }
 
-export const INIT = `${prefix}/INIT`
-export const RECEIVE_NEXT_PROPS = `${prefix}/RECEIVE_NEXT_PROPS`
-export const DESTROY = `${prefix}/DESTROY`
+type Action<T: string, P> = {
+  type: T,
+  payload?: P
+}
+type Init = Action<'conventional-component/INIT', Props>
+type NextProps = Action<'conventional-component/RECEIVE_NEXT_PROPS', Props>
+type Destroy = Action<'conventional-component/DESTROY', void>
+type LifecycleActions = WithIdentity<Init | NextProps | Destroy>
 
-export const init = withActionIdentity((props = {}) => ({
+const INIT = 'conventional-component/INIT'
+const RECEIVE_NEXT_PROPS = 'conventional-component/RECEIVE_NEXT_PROPS'
+const DESTROY = 'conventional-component/DESTROY'
+
+const init = withActionIdentity((props = {}): Init => ({
   type: INIT,
   payload: props
 }))
 
-export const receiveNextProps = withActionIdentity((props = {}) => ({
+const receiveNextProps = withActionIdentity((props = {}): NextProps => ({
   type: RECEIVE_NEXT_PROPS,
   payload: props
 }))
 
-export const destroy = withActionIdentity((props = {}) => ({
+const destroy = withActionIdentity((props = {}): Destroy => ({
   type: DESTROY
 }))
+
+export type { LifecycleActions }
+export { INIT, RECEIVE_NEXT_PROPS, DESTROY, init, receiveNextProps, destroy }

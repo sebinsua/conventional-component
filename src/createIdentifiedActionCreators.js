@@ -1,3 +1,8 @@
+// @flow
+
+import type { ActionCreator } from './types'
+import type { Identifier, IdentifierProps } from './createIdentifier'
+
 import getDisplayName from './getDisplayName'
 import defaultIdentifier from './defaultIdentifier'
 
@@ -5,8 +10,10 @@ import { init, receiveNextProps, destroy } from './actions'
 
 const defaultEmptyObject = {}
 
-const bindIdentityToActionCreator = identity => actionCreator => {
-  const fn = (...args) => actionCreator(identity, ...args)
+const bindIdentityToActionCreator = (identity: string) => (
+  actionCreator: ActionCreator<*>
+) => {
+  const fn = (...args: Array<any>) => actionCreator(identity, ...args)
 
   fn.displayName = getDisplayName(actionCreator, 'AnonymousBoundActionCreator')
 
@@ -14,11 +21,11 @@ const bindIdentityToActionCreator = identity => actionCreator => {
 }
 
 const createIdentifiedActionCreators = (
-  identifier = defaultIdentifier,
-  componentActions
+  identifier: Identifier = defaultIdentifier,
+  componentActions: { [actionCreatorKey: string]: ActionCreator<*> }
 ) => {
   const actions = { ...componentActions, init, receiveNextProps, destroy }
-  return (props = defaultEmptyObject) => {
+  return (props: IdentifierProps = defaultEmptyObject) => {
     const bind = bindIdentityToActionCreator(identifier(props))
 
     const actionCreatorKeys = Object.keys(actions).filter(
