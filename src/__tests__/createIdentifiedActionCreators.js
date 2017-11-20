@@ -1,0 +1,3 @@
+// TODO: Unit tests...
+
+test.skip('should create function which receives props and generates actions pre-bound with an identity', () => {})
