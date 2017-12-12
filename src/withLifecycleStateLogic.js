@@ -1,5 +1,6 @@
 // @flow
 
+import type { ComponentType } from 'react'
 import type { ActionCreator } from './types'
 import type { Init, NextProps, Destroy } from './actions'
 import type { WithIdentity } from './withActionIdentity'
@@ -17,10 +18,9 @@ type WithLifecycleStateLogicProps = {
   destroy: ActionCreator<WithIdentity<Destroy>>
 }
 
-const withLifecycleStateLogic = <Props>(
+const withLifecycleStateLogic = (
   { shouldDispatchReceiveNextProps = false }: LifecyleStateConfiguration = {}
-) => (BaseComponent: Component<Props, *>) => {
-  // $FlowFixMe
+) => (BaseComponent: ComponentType<*>) => {
   const factory = createFactory(BaseComponent)
   class WithLifecycleStateLogic extends Component<
     WithLifecycleStateLogicProps,

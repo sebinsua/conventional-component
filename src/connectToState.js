@@ -1,5 +1,6 @@
 // @flow
 
+import type { ComponentType } from 'react'
 import type { Action } from './actions'
 import type { ComponentActions } from './createIdentifiedActionCreators'
 import type { Reducer } from './withReducerIdentity'
@@ -39,8 +40,7 @@ const connectToState = (
   reducer: Reducer<*, *>,
   actionCreators: ComponentActions,
   initialState: InitialState | void = undefined
-) => (BaseComponent: Component<*, *>) => {
-  // $FlowFixMe
+) => (BaseComponent: ComponentType<*>) => {
   const factory = createFactory(BaseComponent)
   class ConnectToState extends Component<*, *> {
     state = reducer(initialState, init(NO_IDENTITY, this.props))

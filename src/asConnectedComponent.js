@@ -1,6 +1,6 @@
 // @flow
 
-import type { Component } from 'react'
+import type { ComponentType } from 'react'
 import type { LifecycleActions, Action } from './actions'
 import type { Reducer } from './withReducerIdentity'
 import type {
@@ -21,12 +21,12 @@ import defaultConventionalConfig from './defaultConventionalConfig'
 type ConventionalActionCreators = {
   [actionName: string]: ActionCreator<LifecycleActions | Action<*, *>>
 }
-type WithLogic = (TemplateComponent: Component<*, *>) => Component<*, *>
+type WithLogic = (TemplateComponent: ComponentType<*>) => ComponentType<*>
 
 type ConventionalConfig = {
   actions: ConventionalActionCreators,
   withLogic: WithLogic,
-  Template: Component<*, *>,
+  Template: ComponentType<*>,
   reducer: Reducer<*, *>,
   REDUCER_NAME?: ReducerName,
   COMPONENT_NAME?: ComponentName,
