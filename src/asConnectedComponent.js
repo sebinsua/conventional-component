@@ -1,3 +1,9 @@
+// @flow
+
+import type { Component } from 'react'
+import type { LifecycleActions, Action } from './actions'
+import type { ComponentName, ComponentKey, ReducerName } from './types'
+
 import { connect, bindActionCreators } from './redux'
 
 import getDisplayName from './getDisplayName'
@@ -6,7 +12,21 @@ import createMapStateToProps from './createMapStateToProps'
 import createIdentifiedActionCreators from './createIdentifiedActionCreators'
 import defaultConventionalConfig from './defaultConventionalConfig'
 
-function asConnectedComponent(conventionalConfig) {
+type ConventionalActionCreators = {
+  [actionName: string]: LifecycleActions | Action<*, *>
+}
+type WithLogic = (TemplateComponent: Component<*, *>) => Component<*, *>
+
+type ConventionalConfig = {
+  actions: ConventionalActionCreators,
+  withLogic: WithLogic,
+  Template: Component<*, *>,
+  REDUCER_NAME?: ReducerName,
+  COMPONENT_NAME?: ComponentName,
+  COMPONENT_KEY?: ComponentKey
+}
+
+function asConnectedComponent(conventionalConfig: ConventionalConfig) {
   if (!connect || !bindActionCreators) {
     throw new Error(
       'conventional-component#asConnectedComponent() cannot be used unless react-redux and redux are installed.'
@@ -43,4 +63,5 @@ function asConnectedComponent(conventionalConfig) {
   return ConnectedComponent
 }
 
+export type { ConventionalConfig }
 export default asConnectedComponent

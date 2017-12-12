@@ -1,3 +1,7 @@
+// @flow
+import type { ActionCreator } from './types'
+import type { Init, NextProps, Destroy } from './actions'
+
 import { createFactory, Component } from 'react'
 import getDisplayName from './getDisplayName'
 
@@ -5,16 +9,26 @@ type LifecyleStateConfiguration = {
   shouldDispatchReceiveNextProps: boolean
 }
 
-const withLifecycleStateLogic = (
+type WithLifecycleStateLogicProps = {
+  init: ActionCreator<WithIdentity<Init>>,
+  receiveNextProps: ActionCreator<WithIdentity<NextProps>>,
+  destroy: ActionCreator<WithIdentity<Destroy>>
+}
+
+const withLifecycleStateLogic = <Props>(
   { shouldDispatchReceiveNextProps = false }: LifecyleStateConfiguration = {}
-) => BaseComponent => {
+) => (BaseComponent: Component<Props, *>) => {
+  // $FlowFixMe
   const factory = createFactory(BaseComponent)
-  class WithLifecycleStateLogic extends Component {
+  class WithLifecycleStateLogic extends Component<
+    WithLifecycleStateLogicProps,
+    *
+  > {
     componentWillMount() {
       this.props.init(this.props)
     }
 
-    componentWillReceiveProps(nextProps) {
+    componentWillReceiveProps(nextProps: WithLifecycleStateLogicProps) {
       if (shouldDispatchReceiveNextProps) {
         this.props.receiveNextProps(nextProps)
       }

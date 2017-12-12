@@ -3,7 +3,7 @@ import getDisplayName from './getDisplayName'
 
 import { init, receiveNextProps, destroy } from './actions'
 
-const NO_IDENTITY = undefined
+const NO_IDENTITY: void = undefined
 
 const bindActionCreator = dispatch => actionCreator => {
   const fn = (...args) => dispatch(actionCreator(NO_IDENTITY, ...args))
