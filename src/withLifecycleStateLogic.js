@@ -1,7 +1,7 @@
 // @flow
 
 import type { ComponentType } from 'react'
-import type { ActionCreator } from './types'
+import type { ActionCreator } from './actions'
 import type { Init, NextProps, Destroy } from './actions'
 import type { WithIdentity } from './withActionIdentity'
 
@@ -53,4 +53,5 @@ const withLifecycleStateLogic = (
   return WithLifecycleStateLogic
 }
 
+export type { LifecyleStateConfiguration, WithLifecycleStateLogicProps }
 export default withLifecycleStateLogic

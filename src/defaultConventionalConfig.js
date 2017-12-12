@@ -1,8 +1,28 @@
 // @flow
 
-import type { ConventionalConfig } from './asConnectedComponent'
+import type { ComponentType } from 'react'
+import type { Action, ActionCreator, LifecycleActions } from './actions'
+import type { Reducer } from './withReducerIdentity'
 
 import getDisplayName from './getDisplayName'
+
+type ConventionalActionCreators = {
+  [actionName: string]: ActionCreator<LifecycleActions | Action<*, *>>
+}
+type WithLogic = (TemplateComponent: ComponentType<*>) => ComponentType<*>
+type ComponentName = string
+type ComponentKey = string
+type ReducerName = string
+
+type ConventionalConfig = {
+  actions: ConventionalActionCreators,
+  withLogic: WithLogic,
+  Template: ComponentType<*>,
+  reducer: Reducer<*, *>,
+  REDUCER_NAME?: ReducerName,
+  COMPONENT_NAME?: ComponentName,
+  COMPONENT_KEY?: ComponentKey
+}
 
 const DEFAULT_REDUCER_NAME = 'reducer'
 const DEFAULT_COMPONENT_NAME = 'Template'
@@ -53,4 +73,12 @@ const defaultConventionalConfig = (
   }
 }
 
+export type {
+  ConventionalConfig,
+  ConventionalActionCreators,
+  WithLogic,
+  ComponentName,
+  ComponentKey,
+  ReducerName
+}
 export default defaultConventionalConfig

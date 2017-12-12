@@ -1,6 +1,6 @@
 // @flow
 
-import type { ActionCreator } from './types'
+import type { ActionCreator } from './actions'
 import type { Identifier, IdentifierProps } from './createIdentifier'
 
 import getDisplayName from './getDisplayName'

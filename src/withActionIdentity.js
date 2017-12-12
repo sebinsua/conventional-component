@@ -1,9 +1,10 @@
 // @flow
 
-import type { ActionCreator, Identity } from './types'
+import type { ActionCreator } from './actions'
 
 import getDisplayName from './getDisplayName'
 
+type Identity = string
 type WithIdentity<Action> = { identity: Identity, ...Action }
 
 function withActionIdentity<Action: { [key: string]: any }>(

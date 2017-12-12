@@ -1,6 +1,5 @@
 // @flow
 
-import type { Identity, ActionCreator } from './types'
 import type { WithIdentity } from './withActionIdentity'
 
 import withActionIdentity from './withActionIdentity'
@@ -16,6 +15,8 @@ type NextProps = Action<'conventional-component/RECEIVE_NEXT_PROPS', Props>
 
 type Destroy = Action<'conventional-component/DESTROY', void>
 type LifecycleActions = Init | NextProps | Destroy
+
+type ActionCreator<Action> = (...args: Array<any>) => Action
 
 const INIT = 'conventional-component/INIT'
 const RECEIVE_NEXT_PROPS = 'conventional-component/RECEIVE_NEXT_PROPS'
@@ -35,5 +36,13 @@ const destroy = withActionIdentity((props = {}): Destroy => ({
   type: DESTROY
 }))
 
-export type { Action, Props, Init, NextProps, Destroy, LifecycleActions }
+export type {
+  Action,
+  ActionCreator,
+  Props,
+  Init,
+  NextProps,
+  Destroy,
+  LifecycleActions
+}
 export { INIT, RECEIVE_NEXT_PROPS, DESTROY, init, receiveNextProps, destroy }

@@ -1,7 +1,7 @@
 // @flow
 
-import type { Identity, ComponentName } from './types'
-import type { WithIdentity } from './withActionIdentity'
+import type { ComponentName } from './defaultConventionalConfig'
+import type { Identity, WithIdentity } from './withActionIdentity'
 
 import getDisplayName from './getDisplayName'
 
@@ -103,6 +103,6 @@ function withReducerIdentity<ReducerState>(
   return withIdentity
 }
 
-export type { Reducer }
+export type { WithIdentityState, IdentifierPredicate, Reducer }
 export { initialState }
 export default withReducerIdentity

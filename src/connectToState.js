@@ -71,4 +71,5 @@ const connectToState = (
   return ConnectToState
 }
 
+export type { InitialState }
 export default connectToState

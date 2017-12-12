@@ -1,6 +1,6 @@
 // @flow
 
-import type { ComponentName } from './types'
+import type { ComponentName } from './defaultConventionalConfig'
 
 type IdentifierProps = { [key: string]: any }
 type Identifier = (props: IdentifierProps) => string
