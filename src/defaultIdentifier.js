@@ -1,8 +1,8 @@
 // @flow
 
-type Props = { [prop: string]: string }
+import type { IdentifierProps } from './createIdentifier'
 
-const defaultIdentifier = ({ id }: Props = {}): string => `Component/${id}`
+const defaultIdentifier = ({ id }: IdentifierProps = {}): string =>
+  `Component/${id}`
 
-export type { Props }
 export default defaultIdentifier
