@@ -1,7 +1,15 @@
+// @flow
+
+import type { Action } from './actions'
+import type { ComponentActions } from './createIdentifiedActionCreators'
+import type { Reducer } from './withReducerIdentity'
+
 import { createFactory, Component } from 'react'
 import getDisplayName from './getDisplayName'
 
 import { init, receiveNextProps, destroy } from './actions'
+
+type InitialState = { [key: string]: any }
 
 const NO_IDENTITY: void = undefined
 
@@ -28,15 +36,17 @@ const bindActionCreators = (actions = {}, dispatch) => {
 }
 
 const connectToState = (
-  reducer,
-  actionCreators,
-  initialState = undefined
-) => BaseComponent => {
+  reducer: Reducer<*, *>,
+  actionCreators: ComponentActions,
+  initialState: InitialState | void = undefined
+) => (BaseComponent: Component<*, *>) => {
+  // $FlowFixMe
   const factory = createFactory(BaseComponent)
-  class ConnectToState extends Component {
+  class ConnectToState extends Component<*, *> {
     state = reducer(initialState, init(NO_IDENTITY, this.props))
 
-    dispatch = action => this.setState(state => reducer(state, action))
+    dispatch = (action: Action<*>) =>
+      this.setState(state => reducer(state, action))
 
     actionCreators = bindActionCreators(
       { ...actionCreators, init, receiveNextProps, destroy },

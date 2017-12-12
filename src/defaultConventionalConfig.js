@@ -1,5 +1,11 @@
+// @flow
+
+import type { ConventionalConfig } from './asConnectedComponent'
+
 import getDisplayName from './getDisplayName'
 
+const DEFAULT_REDUCER_NAME = 'reducer'
+const DEFAULT_COMPONENT_NAME = 'Template'
 const DEFAULT_COMPONENT_KEY = 'id'
 
 const defaultConventionalConfig = (
@@ -8,10 +14,10 @@ const defaultConventionalConfig = (
     withLogic,
     Template,
     reducer,
-    REDUCER_NAME = getDisplayName(reducer),
-    COMPONENT_NAME = getDisplayName(Template),
+    REDUCER_NAME = getDisplayName(reducer, 'reducer'),
+    COMPONENT_NAME = getDisplayName(Template, 'Template'),
     COMPONENT_KEY = DEFAULT_COMPONENT_KEY
-  } = {}
+  }: ConventionalConfig = {}
 ) => {
   if (!actions || typeof actions !== 'object') {
     throw new Error(

@@ -29,14 +29,14 @@ test('throw if no template component', () => {
   )
 })
 
-test('throw if no reducer name', () => {
+test('do not throw if no reducer name', () => {
   expect(() =>
     defaultConventionalConfig({
       actions: {},
       withLogic: Component => Component,
       Template: () => <div>Test</div>
     })
-  ).toThrow(
+  ).not.toThrow(
     'conventional-component#asConnectedComponent() should be passed the `REDUCER_NAME` key that contains the state or given a reducer with a name.'
   )
 })

@@ -103,5 +103,6 @@ function withReducerIdentity<ReducerState>(
   return withIdentity
 }
 
+export type { Reducer }
 export { initialState }
 export default withReducerIdentity

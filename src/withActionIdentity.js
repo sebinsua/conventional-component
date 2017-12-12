@@ -10,7 +10,7 @@ function withActionIdentity<Action: { [key: string]: any }>(
   actionCreator: ActionCreator<Action>
 ) {
   function withIdentity(
-    identity: Identity,
+    identity: Identity | void,
     ...args: Array<any>
   ): WithIdentity<Action> {
     const action = actionCreator(...args)

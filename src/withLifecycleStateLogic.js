@@ -1,6 +1,8 @@
 // @flow
+
 import type { ActionCreator } from './types'
 import type { Init, NextProps, Destroy } from './actions'
+import type { WithIdentity } from './withActionIdentity'
 
 import { createFactory, Component } from 'react'
 import getDisplayName from './getDisplayName'

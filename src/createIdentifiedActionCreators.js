@@ -8,6 +8,8 @@ import defaultIdentifier from './defaultIdentifier'
 
 import { init, receiveNextProps, destroy } from './actions'
 
+type ComponentActions = { [actionCreatorKey: string]: ActionCreator<*> }
+
 const defaultEmptyObject = {}
 
 const bindIdentityToActionCreator = (identity: string) => (
@@ -22,7 +24,7 @@ const bindIdentityToActionCreator = (identity: string) => (
 
 const createIdentifiedActionCreators = (
   identifier: Identifier = defaultIdentifier,
-  componentActions: { [actionCreatorKey: string]: ActionCreator<*> }
+  componentActions: ComponentActions
 ) => {
   const actions = { ...componentActions, init, receiveNextProps, destroy }
   return (props: IdentifierProps = defaultEmptyObject) => {
@@ -41,5 +43,6 @@ const createIdentifiedActionCreators = (
   }
 }
 
+export type { ComponentActions }
 export { bindIdentityToActionCreator }
 export default createIdentifiedActionCreators
