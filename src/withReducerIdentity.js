@@ -49,7 +49,7 @@ function withReducerIdentity<ReducerState>(
   function withIdentity(
     state: WithIdentityState<ReducerState> = initialState,
     action: WithIdentity<*>
-  ) {
+  ): WithIdentityState<ReducerState> {
     const identities = action.identity
       ? defaultEmptyArray.concat(action.identity)
       : defaultEmptyArray
