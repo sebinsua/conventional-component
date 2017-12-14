@@ -9,8 +9,7 @@ It's loosely inspired from the conventions within [`erikras/ducks-modular-redux`
 
 #### :warning: :construction_worker: :wrench: Ready-for-use yet WIP :hammer: :construction: :warning:
 
-- [ ] **Chore**: Unit tests. *(NOTE: It's already usable as the code is working correctly within the [`example/src`](./example/src)).*
-- [ ] **Feat**: TypeScript definitions.
+- [ ] **Chore**: Finish unit tests. *(NOTE: It's already tested via an example within [`example/src`](./example/src)).*
 
 ## Convention
 
