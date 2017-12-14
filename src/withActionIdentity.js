@@ -9,7 +9,7 @@ type WithIdentity<Action> = { identity: Identity, ...Action }
 
 function withActionIdentity<Action: { [key: string]: any }>(
   actionCreator: ActionCreator<Action>
-) {
+): ActionCreator<WithIdentity<Action>> {
   function withIdentity(
     identity: Identity | void,
     ...args: Array<any>
