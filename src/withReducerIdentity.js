@@ -1,6 +1,5 @@
 // @flow
 
-import type { ComponentName } from './defaultConventionalConfig'
 import type { Identity, WithIdentity } from './withActionIdentity'
 
 import getDisplayName from './getDisplayName'
@@ -34,17 +33,19 @@ const initialState = {
 }
 
 const createDefaultIdentifierPredicate = (
-  componentName: ComponentName
-): IdentifierPredicate => identity => identity.startsWith(componentName)
+  componentName: string
+): IdentifierPredicate => {
+  return (identity: Identity): boolean => identity.startsWith(componentName)
+}
 
 function withReducerIdentity<ReducerState>(
   identifierPredicate: string | IdentifierPredicate,
   identifiedReducer: Reducer<ReducerState, *>
 ) {
   const identityMatches =
-    typeof identifierPredicate === 'string'
-      ? createDefaultIdentifierPredicate(identifierPredicate)
-      : identifierPredicate
+    typeof identifierPredicate === 'function'
+      ? identifierPredicate
+      : createDefaultIdentifierPredicate(identifierPredicate)
 
   function withIdentity(
     state: WithIdentityState<ReducerState> = initialState,

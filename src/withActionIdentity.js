@@ -4,7 +4,7 @@ import type { ActionCreator } from './actions'
 
 import getDisplayName from './getDisplayName'
 
-type Identity = string
+opaque type Identity: string = string
 type WithIdentity<Action> = { identity: Identity, ...Action }
 
 function withActionIdentity<Action: { [key: string]: any }>(

@@ -10,9 +10,9 @@ type ConventionalActionCreators = {
   [actionName: string]: ActionCreator<LifecycleActions | Action<*, *>>
 }
 type WithLogic = (TemplateComponent: ComponentType<*>) => ComponentType<*>
-type ComponentName = string
-type ComponentKey = string
-type ReducerName = string
+opaque type ComponentName: string = string
+opaque type ComponentKey: string = string
+opaque type ReducerName: string = string
 
 type ConventionalConfig = {
   actions: ConventionalActionCreators,
@@ -22,6 +22,15 @@ type ConventionalConfig = {
   REDUCER_NAME?: ReducerName,
   COMPONENT_NAME?: ComponentName,
   COMPONENT_KEY?: ComponentKey
+}
+type CompleteConventionalConfig = {
+  actions: ConventionalActionCreators,
+  withLogic: WithLogic,
+  Template: ComponentType<*>,
+  reducer: Reducer<*, *>,
+  REDUCER_NAME: ReducerName,
+  COMPONENT_NAME: ComponentName,
+  COMPONENT_KEY: ComponentKey
 }
 
 const DEFAULT_REDUCER_NAME = 'reducer'
@@ -38,7 +47,7 @@ const defaultConventionalConfig = (
     COMPONENT_NAME = getDisplayName(Template, 'Template'),
     COMPONENT_KEY = DEFAULT_COMPONENT_KEY
   }: ConventionalConfig = {}
-) => {
+): CompleteConventionalConfig => {
   if (!actions || typeof actions !== 'object') {
     throw new Error(
       'conventional-component#asConnectedComponent() should be passed an `actions` object containing action creators.'
@@ -67,6 +76,7 @@ const defaultConventionalConfig = (
     actions,
     withLogic,
     Template,
+    reducer,
     REDUCER_NAME,
     COMPONENT_NAME,
     COMPONENT_KEY
