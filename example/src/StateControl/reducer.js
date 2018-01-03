@@ -30,7 +30,7 @@ const reducer = (state = initialState, action) => {
 
       if (currentStateIndex > 0) {
         let previousSettableIndex = -1
-        for (var idx = state.availableStates.length; idx >= 0; idx--) {
+        for (let idx = state.availableStates.length; idx >= 0; idx--) {
           if (
             idx < currentStateIndex &&
             state.availableStates[idx].settable !== false
@@ -59,7 +59,7 @@ const reducer = (state = initialState, action) => {
 
       if (currentStateIndex < state.availableStates.length - 1) {
         let nextSettableIndex = -1
-        for (var idx = 0; idx < state.availableStates.length; idx++) {
+        for (let idx = 0; idx < state.availableStates.length; idx++) {
           if (
             idx > currentStateIndex &&
             state.availableStates[idx].settable !== false
