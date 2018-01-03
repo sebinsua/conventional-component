@@ -12,8 +12,6 @@ import { init, receiveNextProps, destroy } from './actions'
 
 type InitialState = { [key: string]: any }
 
-const NO_IDENTITY: void = undefined
-
 const bindActionCreator = dispatch => actionCreator => {
   const fn = (...args) => dispatch(actionCreator(NO_IDENTITY, ...args))
 
@@ -43,7 +41,7 @@ const connectToState = (
 ) => (BaseComponent: ComponentType<*>) => {
   const factory = createFactory(BaseComponent)
   class ConnectToState extends Component<*, *> {
-    state = reducer(initialState, init(NO_IDENTITY, this.props))
+    state = reducer(initialState, { type: undefined })
 
     dispatch = (action: Action<*>) =>
       this.setState(state => reducer(state, action))
@@ -55,8 +53,8 @@ const connectToState = (
 
     render() {
       return factory({
-        ...this.props,
         ...this.state,
+        ...this.props,
         ...this.actionCreators,
         dispatch: this.dispatch
       })
