@@ -1,6 +1,6 @@
 {
   "name": "conventional-component",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "React components which can have their state hoisted into Redux.",
   "main": "dist/index.js",
   "typings": "./index.d.ts",

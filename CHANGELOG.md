@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.3.1"></a>
+## [0.3.1](https://github.com/sebinsua/conventional-component/compare/v0.3.0...v0.3.1) (2018-01-03)
+
+
+### Bug Fixes
+
+* component instantiate should not use init by default ([2daafdf](https://github.com/sebinsua/conventional-component/commit/2daafdf))
+
+
+
 <a name="0.3.0"></a>
 # [0.3.0](https://github.com/sebinsua/conventional-component/compare/v0.2.0...v0.3.0) (2017-12-14)
 
