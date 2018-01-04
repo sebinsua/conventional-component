@@ -1,7 +1,7 @@
 import { INIT, RECEIVE_NEXT_PROPS } from 'conventional-component'
 import { SET_VALUE, PREVIOUS_VALUE, NEXT_VALUE } from './actions'
 
-const REDUCER_NAME = 'StateControl'
+const REDUCER_NAME = 'stateControl'
 
 const initialState = {
   availableStates: [],

@@ -7,7 +7,7 @@ import reducer from './reducer'
 import * as actions from './actions'
 
 const COMPONENT_NAME = 'StateControl'
-const COMPONENT_KEY = 'id'
+const COMPONENT_KEY = 'name'
 
 const enhance = compose(connectToState(reducer, actions), withLogic)
 
