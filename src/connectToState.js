@@ -8,7 +8,13 @@ import type { Reducer } from './withReducerIdentity'
 import { createFactory, Component } from 'react'
 import getDisplayName from './getDisplayName'
 
-import { INIT, init, receiveNextProps, destroy } from './actions'
+import {
+  INIT,
+  RECEIVE_NEXT_PROPS,
+  init,
+  receiveNextProps,
+  destroy
+} from './actions'
 
 type InitialState = { [key: string]: any }
 
@@ -60,8 +66,8 @@ const connectToState = (
       if (isConnected === false) {
         this.setState(state => reducer(state, action))
       } else {
-        // We need to ensure that we do not send out the data which was immediately passed in.
-        if (action.type !== INIT) {
+        // We need to ensure that we do not send out the data which was passed in.
+        if (action.type !== INIT && action.type !== RECEIVE_NEXT_PROPS) {
           this.props.onChange(reducer(withoutFunctions(this.props), action))
         }
       }
