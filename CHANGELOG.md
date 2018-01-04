@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.3.4"></a>
+## [0.3.4](https://github.com/sebinsua/conventional-component/compare/v0.3.3...v0.3.4) (2018-01-04)
+
+
+### Bug Fixes
+
+* connected-style of components works; focus + hover in example ([9223efe](https://github.com/sebinsua/conventional-component/commit/9223efe))
+
+
+
 <a name="0.3.3"></a>
 ## [0.3.3](https://github.com/sebinsua/conventional-component/compare/v0.3.2...v0.3.3) (2018-01-04)
 
