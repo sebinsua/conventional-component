@@ -26,7 +26,7 @@ const withLifecycleStateLogic = (
     WithLifecycleStateLogicProps,
     *
   > {
-    componentWillMount() {
+    componentDidMount() {
       this.props.init(this.props)
     }
 

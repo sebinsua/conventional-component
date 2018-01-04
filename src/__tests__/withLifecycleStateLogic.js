@@ -1,6 +1,6 @@
 // TODO: Unit tests...
 
-test.skip('should call init on componentWillMount', () => {})
+test.skip('should call init on componentDidMount', () => {})
 
 test.skip('should call receiveNextProps on componentWillReceiveProps if shouldDispatchReceiveNextProps is true', () => {})
 
