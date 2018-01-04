@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.3.2"></a>
+## [0.3.2](https://github.com/sebinsua/conventional-component/compare/v0.3.1...v0.3.2) (2018-01-04)
+
+
+### Bug Fixes
+
+* NO_IDENTITY was required by one function ([47e8467](https://github.com/sebinsua/conventional-component/commit/47e8467))
+* **lifecycle:** init should happen on componentDidMount ([d15ddba](https://github.com/sebinsua/conventional-component/commit/d15ddba))
+
+
+
 <a name="0.3.1"></a>
 ## [0.3.1](https://github.com/sebinsua/conventional-component/compare/v0.3.0...v0.3.1) (2018-01-03)
 
