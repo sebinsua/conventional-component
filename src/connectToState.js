@@ -12,6 +12,8 @@ import { init, receiveNextProps, destroy } from './actions'
 
 type InitialState = { [key: string]: any }
 
+const NO_IDENTITY: void = undefined
+
 const bindActionCreator = dispatch => actionCreator => {
   const fn = (...args) => dispatch(actionCreator(NO_IDENTITY, ...args))
 
