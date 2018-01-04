@@ -1,25 +1,30 @@
 import React from 'react'
 import cx from 'classnames'
 
-// TODO: Pass through name...
-
 const StateControlDisplay = ({
   states,
-  currentValue,
+  defaultValue,
+  focusedValue,
+  hoveredValue,
+  selectedValue,
   setValue,
+  hoverValue,
   previousValue,
   nextValue
 }) => (
-  <div>
+  <div onMouseOut={hoverValue.bind(null, undefined)}>
     <button onClick={previousValue}>{'<'}</button>
     {states.map((state, idx) => (
       <button
         key={`item-${idx}`}
         id={`item-${state.value}`}
-        tabIndex={state.value === currentValue ? 0 : -1}
+        tabIndex={state.value === selectedValue ? 0 : -1}
         className={cx('item', state.inputClassName, {
-          item__selected: state.value === currentValue
+          item__focused: state.value === focusedValue,
+          item__hovered: state.value === hoveredValue,
+          item__selected: state.value === (selectedValue || defaultValue)
         })}
+        onMouseOver={hoverValue.bind(null, state.value)}
         onClick={setValue.bind(null, state.value)}
       >
         {state.value}

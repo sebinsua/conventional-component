@@ -11,3 +11,9 @@ body {
   background-color: red;
   color: white;
 }
+.item.item__hovered {
+  border: 2px solid lightblue;
+}
+.item.item__focused {
+  border: 2px solid lightgreen;
+}

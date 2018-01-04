@@ -10,6 +10,7 @@ const ReactTest = () => (
     <Input name="input-name-1" />
     <Input name="input-name-2">{InputTemplate}</Input>
     <StateControl
+      name="speed"
       availableStates={[
         { value: '<S', settable: false },
         { value: 'S' },
