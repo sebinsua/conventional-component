@@ -19,6 +19,7 @@ export {
   reducer,
   withLogic,
   Template,
+  Component,
   REDUCER_NAME,
   COMPONENT_NAME,
   COMPONENT_KEY
@@ -30,9 +31,9 @@ export default Component
 
 A `Component`...
 
-1. **MUST** `export default` itself.
-    1. **MUST** `export` the name of the component as `COMPONENT_NAME`.
-    2. **MUST** `export` the primary key of each of the components as `COMPONENT_KEY` (e.g. `id`, `name`).
+1. **MUST** `export default` and `export` itself.
+    1. **MAY** `export` the name of the component as `COMPONENT_NAME`.
+    2. **MAY** `export` the primary key of each of the components as `COMPONENT_KEY` (e.g. `id`, `name`).
 2. **MUST** store its state using a reducer and some actions.
     1. **MAY** use the higher-order component (HOC) `connectToState(reducer, actions)` to achieve this.
 3. **MUST** `export` its component logic as a higher-order component (HOC) `withLogic(Template)`.
