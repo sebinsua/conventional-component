@@ -43,7 +43,7 @@ import asConnectedComponent from './asConnectedComponent'
 import createIdentifier from './createIdentifier'
 import createIdentifiedActionCreators from './createIdentifiedActionCreators'
 import connectToState from './connectToState'
-import receiveChildrenAsFunction from './receiveChildrenAsFunction'
+import withRenderProp from './withRenderProp'
 import withActionIdentity from './withActionIdentity'
 import createMapStateToProps from './createMapStateToProps'
 import withReducerIdentity from './withReducerIdentity'
@@ -60,7 +60,7 @@ export {
   createIdentifier,
   createIdentifiedActionCreators,
   connectToState,
-  receiveChildrenAsFunction,
+  withRenderProp,
   withActionIdentity,
   createMapStateToProps,
   withReducerIdentity,

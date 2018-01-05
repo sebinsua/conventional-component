@@ -1,8 +1,5 @@
 import React, { Component } from 'react'
-import {
-  receiveChildrenAsFunction,
-  withLifecycleStateLogic
-} from 'conventional-component'
+import { withRenderProp, withLifecycleStateLogic } from 'conventional-component'
 
 import InputDisplay from './InputDisplay'
 
@@ -37,8 +34,11 @@ function withLogic(Template = InputDisplay) {
         reset: this.reset
       }
 
-      if (typeof this.props.children === 'function') {
-        return receiveChildrenAsFunction(templateProps)
+      if (
+        typeof this.props.render === 'function' ||
+        typeof this.props.children === 'function'
+      ) {
+        return withRenderProp(templateProps)
       }
 
       if (Template) {

@@ -1,8 +1,5 @@
 import React, { Component } from 'react'
-import {
-  receiveChildrenAsFunction,
-  withLifecycleStateLogic
-} from 'conventional-component'
+import { withRenderProp, withLifecycleStateLogic } from 'conventional-component'
 
 import StateControlDisplay from './StateControlDisplay'
 
@@ -142,8 +139,11 @@ function withLogic(Template = StateControlDisplay) {
       }
 
       let children = null
-      if (typeof this.props.children === 'function') {
-        children = receiveChildrenAsFunction(templateProps)
+      if (
+        typeof this.props.render === 'function' ||
+        typeof this.props.children === 'function'
+      ) {
+        children = withRenderProp(templateProps)
       } else if (Template) {
         children = <Template {...templateProps} />
       }

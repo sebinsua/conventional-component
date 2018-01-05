@@ -41,7 +41,7 @@ A `Component`...
         2. **MAY** dispatch a `receiveNextProps(identity, props)` action on `componentWillReceiveProps`.
         3. **MUST** dispatch a `destroy(identity)` action on `componentWillUnmount`.
         4. **MAY** use the higher-order component (HOC) `withLifecycleStateLogic` to achieve this.
-    2. **MAY** implement `receiveChildrenAsFunction` in order to render a user-specified function-as-a-child and otherwise fallback to rendering the `Template`.
+    2. **MAY** implement `withRenderProp` in order to render a user-specified render prop but otherwise fallback to rendering the `Template`.
 4. **MUST** `export` its action creator functions as `actions`.
     1. **MUST** either wrap each of its actions with `withActionIdentity(actionCreator)` or use action creators with the same signature.
 5. **MUST** `export` its reducer as `reducer(state, action)`.
@@ -80,7 +80,7 @@ export default Input
 ```js
 import React, { Component } from 'react'
 import {
-  receiveChildrenAsFunction,
+  withRenderProp,
   withLifecycleStateLogic
 } from 'conventional-component'
 
@@ -117,8 +117,11 @@ function withLogic(Template = InputDisplay) {
         reset: this.reset
       }
 
-      if (typeof this.props.children === 'function') {
-        return receiveChildrenAsFunction(templateProps)
+      if (
+        typeof this.props.render === 'function' ||
+        typeof this.props.children === 'function'
+      ) {
+        return withRenderProp(templateProps)
       }
 
       if (Template) {
@@ -249,9 +252,9 @@ This is a helper which can be used to wrap normal action creators with this extr
 
 If you are using thunked actions or need more control for whatever reason, you can just conform to this type signature yourself. All you need to do is make sure that the first argument of each of your action creators is `identity` and that the action which is returned contains this value within an `identity` property.
 
-#### `receiveChildrenAsFunction(props)`
+#### `withRenderProp(props)`
 
-This is just a helper to improve the readability of [the function-as-a-child pattern](http://mxstbr.blog/2017/02/react-children-deepdive/#function-as-a-child).
+This is just a helper to improve the readability of [the render prop and function-as-a-child patterns](http://mxstbr.blog/2017/02/react-children-deepdive/#function-as-a-child).
 
 ### Redux
 
