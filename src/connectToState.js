@@ -20,16 +20,6 @@ type InitialState = { [key: string]: any }
 
 const NO_IDENTITY: void = undefined
 
-const withoutFunctions = (obj = {}) => {
-  const newObj = {}
-  for (let key in obj) {
-    if (typeof obj[key] !== 'function') {
-      newObj[key] = obj[key]
-    }
-  }
-  return newObj
-}
-
 const bindActionCreator = dispatch => actionCreator => {
   const fn = (...args) => dispatch(actionCreator(NO_IDENTITY, ...args))
 
@@ -63,14 +53,19 @@ const connectToState = (
 
     dispatch = (action: Action<*>) => {
       const isConnected = typeof this.props.onChange === 'function'
-      if (isConnected === false) {
-        this.setState(state => reducer(state, action))
-      } else {
-        // We need to ensure that we do not send out the data which was passed in.
-        if (action.type !== INIT && action.type !== RECEIVE_NEXT_PROPS) {
-          this.props.onChange(reducer(withoutFunctions(this.props), action))
+      const isPropChange =
+        action.type === INIT || action.type === RECEIVE_NEXT_PROPS
+
+      this.setState(state => {
+        const newState = reducer(state, action)
+
+        // Ensure that we do not send out the props that were just passed in.
+        if (isConnected && isPropChange === false) {
+          this.props.onChange(newState)
         }
-      }
+
+        return newState
+      })
     }
 
     actionCreators = bindActionCreators(
