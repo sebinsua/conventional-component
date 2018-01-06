@@ -8,8 +8,13 @@ import type { WithIdentity } from './withActionIdentity'
 import { createFactory, Component } from 'react'
 import getDisplayName from './getDisplayName'
 
+type ShouldDispatchFn = (
+  props: { [key]: ?any },
+  newProps: { [key]: ?any }
+) => boolean
+
 type LifecyleStateConfiguration = {
-  shouldDispatchReceiveNextProps: boolean
+  shouldDispatchReceiveNextProps: boolean | ShouldDispatchFn
 }
 
 type WithLifecycleStateLogicProps = {
@@ -31,7 +36,11 @@ const withLifecycleStateLogic = (
     }
 
     componentWillReceiveProps(nextProps: WithLifecycleStateLogicProps) {
-      if (shouldDispatchReceiveNextProps) {
+      const shouldDispatch =
+        typeof shouldDispatchReceiveNextProps === 'function'
+          ? shouldDispatchReceiveNextProps(this.props, nextProps)
+          : !!shouldDispatchReceiveNextProps
+      if (shouldDispatch) {
         this.props.receiveNextProps(nextProps)
       }
     }

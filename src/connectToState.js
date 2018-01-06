@@ -51,7 +51,7 @@ const connectToState = (
   class ConnectToState extends Component<*, *> {
     state = reducer(initialState, { type: undefined })
 
-    dispatch = (action: Action<*>) => {
+    dispatch = (action: Action<*, *>) => {
       const isConnected = typeof this.props.onChange === 'function'
       const isPropChange =
         action.type === INIT || action.type === RECEIVE_NEXT_PROPS
