@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.5.1"></a>
+## [0.5.1](https://github.com/sebinsua/conventional-component/compare/v0.5.0...v0.5.1) (2018-01-07)
+
+
+### Bug Fixes
+
+* **connect-to-state:** merge controlled props onto state before reduce ([7fb0b7b](https://github.com/sebinsua/conventional-component/commit/7fb0b7b))
+
+
+
 <a name="0.5.0"></a>
 # [0.5.0](https://github.com/sebinsua/conventional-component/compare/v0.4.2...v0.5.0) (2018-01-06)
 
