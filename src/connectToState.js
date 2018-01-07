@@ -16,7 +16,8 @@ import {
   destroy
 } from './actions'
 
-type InitialState = { [key: string]: any }
+type State = { [key: string]: ?any }
+type InitialState = State
 
 const NO_IDENTITY: void = undefined
 
@@ -51,16 +52,31 @@ const connectToState = (
   class ConnectToState extends Component<*, *> {
     state = reducer(initialState, { type: undefined })
 
+    isControlledProp = (key: string): boolean => {
+      return this.props[key] !== undefined
+    }
+
+    getState = (state: State | void = this.state) => {
+      const stateToMerge = state || {}
+      return Object.keys(stateToMerge).reduce((partialState, key) => {
+        partialState[key] =
+          this.isControlledProp(key) && this.props[key] !== stateToMerge[key]
+            ? this.props[key]
+            : stateToMerge[key]
+        return partialState
+      }, {})
+    }
+
     dispatch = (action: Action<*, *>) => {
-      const isConnected = typeof this.props.onChange === 'function'
+      const hasOnChange = typeof this.props.onChange === 'function'
       const isPropChange =
         action.type === INIT || action.type === RECEIVE_NEXT_PROPS
 
       this.setState(state => {
-        const newState = reducer(state, action)
+        const newState = reducer(this.getState(state), action)
 
         // Ensure that we do not send out the props that were just passed in.
-        if (isConnected && isPropChange === false) {
+        if (hasOnChange && isPropChange === false) {
           this.props.onChange(newState)
         }
 

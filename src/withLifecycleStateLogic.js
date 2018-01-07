@@ -9,12 +9,12 @@ import { createFactory, Component } from 'react'
 import getDisplayName from './getDisplayName'
 
 type ShouldDispatchFn = (
-  props: { [key]: ?any },
-  newProps: { [key]: ?any }
+  props: { [key: string]: any },
+  newProps: { [key: string]: any }
 ) => boolean
 
 type LifecyleStateConfiguration = {
-  shouldDispatchReceiveNextProps: boolean | ShouldDispatchFn
+  shouldDispatchReceiveNextProps: ShouldDispatchFn | false
 }
 
 type WithLifecycleStateLogicProps = {
@@ -24,7 +24,7 @@ type WithLifecycleStateLogicProps = {
 }
 
 const withLifecycleStateLogic = (
-  { shouldDispatchReceiveNextProps = false }: LifecyleStateConfiguration = {}
+  { shouldDispatchReceiveNextProps }: LifecyleStateConfiguration = {}
 ) => (BaseComponent: ComponentType<*>) => {
   const factory = createFactory(BaseComponent)
   class WithLifecycleStateLogic extends Component<
