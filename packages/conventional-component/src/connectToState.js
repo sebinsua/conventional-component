@@ -1,9 +1,8 @@
 // @flow
 
 import type { ComponentType } from 'react'
-import type { Action } from './actions'
-import type { ComponentActions } from './createIdentifiedActionCreators'
-import type { Reducer } from './withReducerIdentity'
+import type { Action, ActionCreator } from './actions'
+import type { Reducer } from './defaultConventionalConfig'
 
 import { createFactory, Component } from 'react'
 import getDisplayName from './getDisplayName'
@@ -15,6 +14,8 @@ import {
   receiveNextProps,
   destroy
 } from './actions'
+
+type ComponentActions = { [actionCreatorKey: string]: ActionCreator<*> }
 
 type State = { [key: string]: ?any }
 type InitialState = State

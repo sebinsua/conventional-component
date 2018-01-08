@@ -1,0 +1,50 @@
+{
+  "name": "conventional-component",
+  "version": "0.5.1",
+  "description": "React components which can have their state hoisted into Redux.",
+  "main": "dist/index.js",
+  "typings": "./index.d.ts",
+  "repository": "git@github.com:sebinsua/conventional-component.git",
+  "author": "Seb Insua <me@sebinsua.com>",
+  "license": "MIT",
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "scripts": {
+    "commitmsg": "commitlint -e",
+    "precommit": "lint-staged",
+    "prepush": "npm test",
+    "test": "jest --modulePathIgnorePatterns example/",
+    "build": "rimraf dist/ && babel src --out-dir dist --ignore __tests__/*.js",
+    "release": "npm test && npm run build && standard-version"
+  },
+  "peerDependencies": {
+    "react": "^0.14.0 || ^15.0.0-0 || ^16.0.0-0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^5.2.5",
+    "@commitlint/config-conventional": "^5.2.3",
+    "babel-cli": "^6.26.0",
+    "babel-jest": "^21.0.2",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-flow": "^6.23.0",
+    "babel-preset-react": "^6.24.1",
+    "enzyme": "^3.1.1",
+    "flow-bin": "^0.61.0",
+    "husky": "^0.14.3",
+    "jest": "^21.1.0",
+    "lerna": "^2.5.1",
+    "lint-staged": "^6.0.0",
+    "prettier": "^1.9.1",
+    "react": "^16.1.0",
+    "react-dom": "^16.1.0",
+    "react-test-renderer": "^16.1.0",
+    "rimraf": "^2.6.2",
+    "standard-version": "^4.2.0"
+  }
+}

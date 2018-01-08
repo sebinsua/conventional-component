@@ -2,9 +2,13 @@
 
 import type { ComponentType } from 'react'
 import type { Action, ActionCreator, LifecycleActions } from './actions'
-import type { Reducer } from './withReducerIdentity'
 
 import getDisplayName from './getDisplayName'
+
+type Reducer<ReducerState, Actions> = (
+  state: ReducerState,
+  action: Actions
+) => ReducerState
 
 type ConventionalActionCreators = {
   [actionName: string]: ActionCreator<LifecycleActions | Action<*, *>>

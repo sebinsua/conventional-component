@@ -1,14 +1,13 @@
 // @flow
 
-import type { ActionCreator } from './actions'
+// TODO: Make these both exports...
+import type { ActionCreator } from 'conventional-component'
 import type { Identifier, IdentifierProps } from './createIdentifier'
 
-import getDisplayName from './getDisplayName'
+import { getDisplayName } from 'conventional-component'
 import defaultIdentifier from './defaultIdentifier'
 
 import { init, receiveNextProps, destroy } from './actions'
-
-type ComponentActions = { [actionCreatorKey: string]: ActionCreator<*> }
 
 const defaultEmptyObject = {}
 

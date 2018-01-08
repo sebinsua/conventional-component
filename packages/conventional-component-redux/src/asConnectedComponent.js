@@ -1,14 +1,17 @@
 // @flow
 
-import type { ConventionalConfig } from './defaultConventionalConfig'
+import type { ConventionalConfig } from 'conventional-config'
+
+import {
+  defaultConventionalConfig,
+  getDisplayName
+} from 'conventional-component'
 
 import { connect, bindActionCreators } from './redux'
 
-import getDisplayName from './getDisplayName'
 import createIdentifier from './createIdentifier'
 import createMapStateToProps from './createMapStateToProps'
 import createIdentifiedActionCreators from './createIdentifiedActionCreators'
-import defaultConventionalConfig from './defaultConventionalConfig'
 
 function asConnectedComponent(conventionalConfig: ConventionalConfig) {
   if (!connect || !bindActionCreators) {

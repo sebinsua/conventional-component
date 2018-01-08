@@ -39,10 +39,11 @@ import {
   RECEIVE_NEXT_PROPS,
   DESTROY
 } from './actions'
-import asConnectedComponent from './asConnectedComponent'
 import createIdentifier from './createIdentifier'
 import createIdentifiedActionCreators from './createIdentifiedActionCreators'
 import connectToState from './connectToState'
+import defaultConventionalConfig from './defaultConventionalConfig'
+import getDisplayName from './getDisplayName'
 import withRenderProp from './withRenderProp'
 import withActionIdentity from './withActionIdentity'
 import createMapStateToProps from './createMapStateToProps'
@@ -56,10 +57,11 @@ export {
   INIT,
   RECEIVE_NEXT_PROPS,
   DESTROY,
-  asConnectedComponent,
   createIdentifier,
   createIdentifiedActionCreators,
   connectToState,
+  defaultConventionalConfig,
+  getDisplayName,
   withRenderProp,
   withActionIdentity,
   createMapStateToProps,

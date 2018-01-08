@@ -2,9 +2,7 @@
 
 import type { Identity, WithIdentity } from './withActionIdentity'
 
-import getDisplayName from './getDisplayName'
-
-import { INIT, DESTROY } from './actions'
+import { INIT, DESTROY, getDisplayName } from 'conventional-component'
 
 type WithIdentityState<ReducerState> = {
   mountedIdentities: Array<Identity>,
